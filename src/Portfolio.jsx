@@ -36,8 +36,8 @@ import {
   Monitor
 } from 'lucide-react';
 
-const PROFILE_IMAGE = '/siddharth.jpg';
-const RESUME_PATH = '/public/siddharth_resume.pdf';
+const PROFILE_IMAGE = `${import.meta.env.BASE_URL}siddharth.jpg`;
+const RESUME_PATH = `${import.meta.env.BASE_URL}siddharth_resume.pdf`;
 
 const createTheme = (color, rgb) => ({
   color,
@@ -965,7 +965,7 @@ export default function Portfolio() {
               className={`relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full border-4 ${theme.borderMedium} overflow-hidden shadow-2xl ${theme.shadowStrong}`}
             >
               <img 
-                src="/public/siddharth.jpg"
+                src={PROFILE_IMAGE}
                 alt="Siddharth Sharma" 
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
               />
