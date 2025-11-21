@@ -26,6 +26,7 @@ import {
   Plane,
   Zap,
   Star,
+  Instagram,
   Download,
   Coffee,
   Brain,
@@ -884,6 +885,17 @@ export default function Portfolio() {
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="font-bold text-xl tracking-tighter">
             Siddharth<span className={accentColorClass}>.</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <a href="https://instagram.com/_ig__skull_" target="_blank" rel="noreferrer" aria-label="Instagram" className="p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 transition-colors">
+              <Instagram size={18} />
+            </a>
+            <a href="https://github.com/Sidd1374" target="_blank" rel="noreferrer" aria-label="GitHub" className="p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 transition-colors">
+              <Github size={18} />
+            </a>
+            <a href="https://linkedin.com/in/siddharthsharma1374" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 transition-colors">
+              <Linkedin size={18} />
+            </a>
           </div>
         </div>
       </nav>
