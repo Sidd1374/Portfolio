@@ -1,0 +1,13 @@
+node_modules/
+.node_module
+dist/
+.env
+.DS_Store
+.vscode/
+public/siddharth.jpg
+/.idea/
+npm-debug.log*
+yarn-error.log*
+coverage/
+/.parcel-cache/
+/.cache/
