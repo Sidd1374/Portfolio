@@ -14,6 +14,7 @@ import {
   Mail, 
   Terminal,
   Calendar,
+  MapPin,
   Award,
   Video,
   Mic,
@@ -26,14 +27,15 @@ import {
   Plane,
   Zap,
   Star,
-  Instagram,
+  FileText,
   Download,
   Coffee,
   Brain,
   Megaphone,
   Lightbulb,
   Globe,
-  Monitor
+  Monitor,
+  Instagram
 } from 'lucide-react';
 
 const PROFILE_IMAGE = `${import.meta.env.BASE_URL}siddharth.jpg`;
@@ -264,9 +266,9 @@ const INTERESTS_DATA = [
 ];
 
 const EVENTS_HIGHLIGHTS = [
-  { id: 1, title: "Tech Fest 2024", role: "Core Organizer", stats: "5000+ Attendees" },
-  { id: 2, title: "Microsoft Summit", role: "Event Lead", stats: "30+ Speakers" },
-  { id: 3, title: "Campus Hackathon", role: "Logistics Head", stats: "48 Hours Non-stop" },
+  { id: 1, title: "Tech Fest 2024", role: "Core Organizer", stats: "5000+ Attendees", image: "techfest.jpeg" },
+  { id: 2, title: "Microsoft Summit", role: "Event Lead", stats: "30+ Speakers", image: "kk1.jpeg" },
+  { id: 3, title: "Campus Hackathon", role: "Logistics Head", stats: "48 Hours Non-stop", image: "tricity3.jpeg" },
 ];
 
 const FULL_DATA = [
@@ -314,7 +316,7 @@ const FULL_DATA = [
       challenge: "Creating engaging long-form content for a university audience.",
       solution: "Revamped editing style and improved audio mastering.",
       tech: ["Audio Editing", "Podcast Production", "Content Strategy"],
-      images: ["Studio Setup", "Podcast Thumbnail"]
+      images: ["kk3.jpeg", ]
     }
   },
   {
@@ -381,6 +383,22 @@ const FULL_DATA = [
       images: ["cyberthonai1.jpeg", "cyberthonai2.jpeg", "cyberthonai3.jpeg", "cyberthonai4.jpeg"]
     }
   },
+    {
+    id: 9,
+    year: "2025",
+    title: "2nd Runner-Up, Hack with Tricity",
+    organization: "North Zone Hackathon",
+    description: "Built an innovative solution for local governance challenges and secured 2nd Runner-Up.",
+    category: "achievement",
+    personas: ["builder", "leader"],
+    icon: <Award className="w-6 h-6" />,
+    details: {
+      challenge: "Design a scalable, modular prototype under tight time constraints.",
+      solution: "Focused on an MVP that demonstrated core functionality and impact.",
+      tech: ["Flutter", "Firebase", "Rapid Prototyping"],
+      images: ["tricity1.jpeg", "tricity2.jpeg", "tricity3.jpeg"]
+    }
+  },
   {
     id: 6,
     year: "Leadership & Events",
@@ -394,7 +412,7 @@ const FULL_DATA = [
       challenge: "Leading diverse teams and managing large-scale events.",
       solution: "Organized 30+ successful events and led content campaigns.",
       tech: ["Leadership", "Event Management", "Content Creation"],
-      images: ["Event Crowd", "Podcast Set"]
+      images: ["kk2.jpeg"]
     }
   },
   {
@@ -410,7 +428,7 @@ const FULL_DATA = [
       challenge: "Manual data entry was slowing down production.",
       solution: "Built a real-time Firestore app for inventory tracking.",
       tech: ["Flutter", "Firestore", "Role-based Auth"],
-      images: ["Dashboard UI", "Efficiency Chart"]
+      images: ["careutility1.jpeg", "careutility2.jpeg", "careutility3.jpeg", "careutility4.jpeg", "careutility5.jpeg"]
     }
   },
   {
@@ -653,7 +671,7 @@ const AchievementsSection = ({ theme }) => {
 };
 
 // --- COMPONENT: Event Highlights & Interests ---
-const PostTimelineSection = ({ theme }) => {
+const PostTimelineSection = ({ theme, onOpenGallery }) => {
   return (
     <div className="bg-black">
       {/* Events Highlight */}
@@ -663,9 +681,13 @@ const PostTimelineSection = ({ theme }) => {
             <h2 className="text-3xl font-bold mb-2">Event Highlights</h2>
             <p className="text-gray-400">Leading from the front.</p>
           </div>
-          <button className={`px-6 py-2 border ${theme.borderBold} ${theme.accent} rounded-full ${theme.hoverBg} transition-colors text-sm font-medium`}>
-            View Gallery
-          </button>
+          <div className="flex gap-3">
+              <div>
+                <button onClick={() => onOpenGallery()} className={`px-6 py-2 border ${theme.borderMedium} ${theme.accent} rounded-full ${theme.hoverBg} transition-colors text-sm font-medium`}>
+                  View Gallery
+                </button>
+              </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -678,13 +700,17 @@ const PostTimelineSection = ({ theme }) => {
               transition={{ delay: idx * 0.1 }}
               className="group relative overflow-hidden rounded-xl aspect-video bg-gray-900 border border-gray-800"
             >
-              {/* Placeholder for Event Image - Using Gradient for now */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-black opacity-80 group-hover:scale-105 transition-transform duration-500" />
+              {/* Background image if provided */}
+              {event.image ? (
+                <div className="absolute inset-0 bg-cover bg-center opacity-90 group-hover:scale-105 transition-transform duration-500" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}${event.image})` }} />
+              ) : (
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-black opacity-80 group-hover:scale-105 transition-transform duration-500" />
+              )}
               
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <span className={`${theme.accent} text-xs font-bold uppercase tracking-wider mb-1`}>{event.role}</span>
                 <h3 className="text-xl font-bold text-white mb-1">{event.title}</h3>
-                <p className="text-gray-400 text-sm">{event.stats}</p>
+                <p className="text-gray-200 text-sm">{event.stats}</p>
               </div>
             </motion.div>
           ))}
@@ -715,6 +741,7 @@ const PostTimelineSection = ({ theme }) => {
     </div>
   );
 };
+
 
 // --- COMPONENT: Modal ---
 const Modal = ({ isOpen, onClose, data, theme }) => {
@@ -811,6 +838,119 @@ const Modal = ({ isOpen, onClose, data, theme }) => {
   );
 };
 
+// --- COMPONENT: Gallery Modal (Tabbed sections + Slider) ---
+const GalleryModal = ({ isOpen, onClose, images = [], category = null, theme }) => {
+  const sections = [
+    { key: 'college', label: 'Tech Events & Hackathons' },
+    { key: 'insight', label: 'Podcast - Insight Universe' },
+    { key: 'projects', label: 'Projects' }
+  ];
+
+  const getImagesFor = (key) => {
+    if (key === 'college') return EVENTS_HIGHLIGHTS.map(e => e.image).filter(Boolean);
+    if (key === 'insight') {
+      const imgs = FULL_DATA.filter(d => d.organization && d.organization.toLowerCase().includes('insight universe')).flatMap(d => d.details?.images || []);
+      if (imgs.length) return imgs;
+      const fallback = FULL_DATA.find(d => d.id === 201);
+      return fallback?.details?.images || [];
+    }
+    if (key === 'projects') return FULL_DATA.filter(d => d.category === 'project').flatMap(d => d.details?.images || []);
+    return [];
+  };
+
+  const [active, setActive] = useState(0);
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    // If the parent provided a category selection, set the active tab accordingly
+    if (category) {
+      const found = sections.findIndex(s => s.label.toLowerCase() === String(category).toLowerCase());
+      if (found >= 0) setActive(found);
+    }
+    // reset image index when opening
+    setIdx(0);
+  }, [isOpen, category]);
+
+  if (!isOpen) return null;
+
+  const activeKey = sections[active].key;
+  const activeImages = getImagesFor(activeKey);
+  const showPrev = idx > 0;
+  const showNext = idx < activeImages.length - 1;
+
+  // removed next/prev section jump buttons per user request
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md" onClick={onClose}>
+          <motion.div initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }} className={`relative w-full max-w-5xl bg-gray-900 border ${theme.borderMedium} rounded-2xl overflow-hidden`} onClick={(e) => e.stopPropagation()}>
+            <div className={`h-1 w-full bg-gradient-to-r ${theme.gradientDeep}`} />
+            <div className="p-6 md:p-8 max-h-[80vh] overflow-y-auto">
+              <button onClick={onClose} className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-800 text-gray-400 hover:text-white transition-colors"><X size={24} /></button>
+
+              {/* Tabs / Jump Selector */}
+              <div className="mb-4 flex items-center justify-between">
+                <div className="relative flex-1">
+                  <div className="flex bg-gray-800/30 p-1 rounded-lg gap-1">
+                    {sections.map((s, i) => (
+                      <button key={s.key} onClick={() => { setActive(i); setIdx(0); }} className={`relative z-10 flex-1 px-4 py-2 text-sm font-medium rounded-md ${active === i ? 'text-black' : 'text-gray-300'} ${active === i ? theme.accentBg : ''}`}>
+                        {s.label}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="absolute left-0 right-0 top-0 bottom-0 pointer-events-none">
+                    <div className="relative w-full h-full">
+                      <div className="absolute bottom-1 left-0" style={{ left: `${(active / sections.length) * 100}%`, width: `${100 / sections.length}%` }}>
+                        <div className={`h-1 rounded-full ${theme.bgSolid}`} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* section jump buttons removed */}
+              </div>
+
+              {/* Active Section Title */}
+              <h2 className="text-2xl font-bold text-white mb-4">{sections[active].label}</h2>
+
+              {/* Images area */}
+              {activeImages.length > 0 ? (
+                <div>
+                  <div className="relative w-full h-64 md:h-80 flex items-center justify-center bg-gray-800 rounded-xl overflow-hidden">
+                    <motion.img key={`${active}-${idx}`} src={`${import.meta.env.BASE_URL}${activeImages[idx]}`} alt={`${sections[active].label} ${idx + 1}`} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ type: 'spring', stiffness: 200, damping: 30 }} className="object-contain w-full h-full" />
+
+                    {showPrev && (
+                      <button onClick={() => setIdx(i => i - 1)} className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 text-white rounded-full p-2 hover:bg-black/80 z-10">
+                        <ChevronRight size={24} className="rotate-180" />
+                      </button>
+                    )}
+                    {showNext && (
+                      <button onClick={() => setIdx(i => i + 1)} className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 text-white rounded-full p-2 hover:bg-black/80 z-10">
+                        <ChevronRight size={24} />
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {activeImages.map((img, i) => (
+                      <button key={i} onClick={() => setIdx(i)} className={`w-20 h-14 rounded-md overflow-hidden border ${i === idx ? `${theme.borderSolid}` : 'border-gray-800'} focus:outline-none`}>
+                        <img src={`${import.meta.env.BASE_URL}${img}`} alt={`thumb-${i}`} className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="text-gray-400">No images available for this section.</div>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
 // --- COMPONENT: Timeline Node with Glow Effect ---
 const TimelineNode = ({ data, index, theme, onClick }) => {
   const ref = useRef(null);
@@ -865,6 +1005,9 @@ export default function Portfolio() {
   const [persona, setPersona] = useState('builder'); // 'builder', 'leader', 'creator'
   const [selectedNode, setSelectedNode] = useState(null);
   const [selectedSkillCategory, setSelectedSkillCategory] = useState(null);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryCategory, setGalleryCategory] = useState(null);
+  const [galleryImages, setGalleryImages] = useState([]);
   const [scrolled, setScrolled] = useState(false);
 
   // Filter Data
@@ -904,6 +1047,42 @@ export default function Portfolio() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Gallery handlers: build image arrays per category and open modal
+  const openGallery = (category) => {
+    // If a specific category is provided, preselect it; otherwise open the modal
+    // and allow the modal to navigate between sections (tabs).
+    if (category) {
+      let imgs = [];
+      if (category === 'College Events') {
+        imgs = EVENTS_HIGHLIGHTS.map(e => e.image).filter(Boolean);
+      } else if (category === 'Insight Universe') {
+        imgs = FULL_DATA.filter(d => d.organization && d.organization.toLowerCase().includes('insight universe')).flatMap(d => d.details?.images || []);
+        if (imgs.length === 0) {
+          const fallback = FULL_DATA.find(d => d.id === 201);
+          imgs = fallback?.details?.images || [];
+        }
+      } else if (category === 'Projects') {
+        imgs = FULL_DATA.filter(d => d.category === 'project').flatMap(d => d.details?.images || []);
+      } else {
+        imgs = FULL_DATA.flatMap(d => d.details?.images || []).filter(Boolean);
+      }
+
+      setGalleryImages(imgs);
+      setGalleryCategory(category);
+    } else {
+      setGalleryImages([]);
+      setGalleryCategory(null);
+    }
+
+    setGalleryOpen(true);
+  };
+
+  const closeGallery = () => {
+    setGalleryOpen(false);
+    setGalleryCategory(null);
+    setGalleryImages([]);
+  };
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-white/20 overflow-x-hidden">
@@ -1084,7 +1263,10 @@ export default function Portfolio() {
       {/* Achievements & Extras Section */}
       <AchievementsSection theme={theme} />
       
-      <PostTimelineSection theme={theme} />
+      <PostTimelineSection theme={theme} onOpenGallery={openGallery} />
+
+      {/* Gallery Modal (opened by PostTimelineSection View Gallery or other triggers) */}
+      <GalleryModal isOpen={galleryOpen} onClose={closeGallery} images={galleryImages} category={galleryCategory} theme={theme} />
 
       {/* Contact Section */}
       <section className="py-24 px-6 text-center">
