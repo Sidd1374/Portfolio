@@ -131,7 +131,6 @@ const SKILLS_DATA = {
       items: [
         { name: "Python", level: 90 },
         { name: "Java", level: 85 },
-        { name: "Dart", level: 88 },
         { name: "SQL", level: 75 },
         { name: "C++", level: 70 }
       ] 
@@ -140,9 +139,7 @@ const SKILLS_DATA = {
       category: "Frameworks", 
       items: [
         { name: "Flutter", level: 95 },
-        { name: "React", level: 80 },
-        { name: "Firebase", level: 90 },
-        { name: "Node.js", level: 65 }
+        { name: "Firebase", level: 90 }
       ] 
     },
     { 
@@ -150,8 +147,7 @@ const SKILLS_DATA = {
       items: [
         { name: "Git/GitHub", level: 90 },
         { name: "VS Code", level: 95 },
-        { name: "Android Studio", level: 85 },
-        { name: "Postman", level: 80 }
+        { name: "Android Studio", level: 85 }
       ] 
     },
     { 
@@ -160,7 +156,7 @@ const SKILLS_DATA = {
         { name: "Data Structures", level: 85 },
         { name: "Algorithms", level: 80 },
         { name: "OOPs", level: 90 },
-        { name: "DBMS", level: 75 }
+        { name: "DBMS", level: 95 }
       ] 
     }
   ],
@@ -350,7 +346,7 @@ const FULL_DATA = [
       challenge: "Meeting strict client requirements for UI/UX.",
       solution: "Delivered a pixel-perfect Flutter frontend ahead of schedule.",
       tech: ["Flutter", "Dart", "Mobile Dev"],
-      images: ["App Mockup", "Code Snippet"]
+      images: ["kk1.jpeg", "kk2.jpeg", "kk3.jpeg"]
     }
   },
   {
@@ -382,7 +378,7 @@ const FULL_DATA = [
       challenge: "Solving a complex cyber-security problem in 24 hours.",
       solution: "Developed a prototype that impressed the judges.",
       tech: ["Problem Solving", "Rapid Prototyping"],
-      images: ["Award Ceremony", "Hackathon Team"]
+      images: ["cyberthonai1.jpeg", "cyberthonai2.jpeg", "cyberthonai3.jpeg", "cyberthonai4.jpeg"]
     }
   },
   {
@@ -722,7 +718,12 @@ const PostTimelineSection = ({ theme }) => {
 
 // --- COMPONENT: Modal ---
 const Modal = ({ isOpen, onClose, data, theme }) => {
+  const [imgIdx, setImgIdx] = useState(0);
   if (!isOpen || !data) return null;
+  const images = data.details?.images || [];
+  const hasImages = images.length > 0;
+  const showPrev = imgIdx > 0;
+  const showNext = imgIdx < images.length - 1;
   return (
     <AnimatePresence>
       {isOpen && (
@@ -747,6 +748,38 @@ const Modal = ({ isOpen, onClose, data, theme }) => {
                 <span>{data.year}</span><span>•</span><span>{data.organization}</span>
               </div>
               <h2 className="text-3xl font-bold text-white mb-6">{data.title}</h2>
+              {/* Image slider */}
+              {hasImages && (
+                <div className="mb-8">
+                  <div className="relative w-full h-64 md:h-80 flex items-center justify-center bg-gray-800 rounded-xl overflow-hidden">
+                    <motion.img
+                      key={imgIdx}
+                      src={`${import.meta.env.BASE_URL}${images[imgIdx]}`}
+                      alt={data.title + ' image'}
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -50 }}
+                      transition={{ type: 'spring', stiffness: 200, damping: 30 }}
+                      className="object-contain w-full h-full"
+                    />
+                    {showPrev && (
+                      <button onClick={() => setImgIdx(i => i - 1)} className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 text-white rounded-full p-2 hover:bg-black/80 z-10">
+                        <ChevronRight size={24} className="rotate-180" />
+                      </button>
+                    )}
+                    {showNext && (
+                      <button onClick={() => setImgIdx(i => i + 1)} className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 text-white rounded-full p-2 hover:bg-black/80 z-10">
+                        <ChevronRight size={24} />
+                      </button>
+                    )}
+                  </div>
+                  <div className="flex justify-center gap-2 mt-2">
+                    {images.map((img, idx) => (
+                      <button key={idx} onClick={() => setImgIdx(idx)} className={`w-3 h-3 rounded-full ${imgIdx === idx ? theme.bgSolid : 'bg-gray-700'} border border-gray-800`} />
+                    ))}
+                  </div>
+                </div>
+              )}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="bg-gray-800/50 p-5 rounded-xl border border-gray-700/50 hover:border-gray-600 transition-colors">
                   <h3 className={`${theme.accent} font-semibold mb-2 flex items-center gap-2`}><span className="text-xl">🔥</span> The Challenge</h3>
@@ -946,7 +979,7 @@ export default function Portfolio() {
               <a href="https://linkedin.com/in/siddharthsharma1374" target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-600 transition-all flex items-center gap-2 text-sm font-medium group">
                 <Linkedin size={16} className="group-hover:text-blue-400" /> LinkedIn
               </a>
-              <a href="https://github.com/siddharthsharma1374" target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-600 transition-all flex items-center gap-2 text-sm font-medium group">
+              <a href="https://github.com/Sidd1374" target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-600 transition-all flex items-center gap-2 text-sm font-medium group">
                 <Github size={16} className="group-hover:text-white" /> GitHub
               </a>
               <a href={RESUME_PATH} className={`px-4 py-2 rounded-lg bg-gray-900/80 border ${theme.borderMedium} ${theme.accent} ${theme.hoverBg} transition-all flex items-center gap-2 text-sm font-medium`}>
