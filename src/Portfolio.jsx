@@ -894,7 +894,7 @@ const GalleryModal = ({ isOpen, onClose, images = [], category = null, theme }) 
                 <div className="relative flex-1">
                   <div className="flex bg-gray-800/30 p-1 rounded-lg gap-1">
                     {sections.map((s, i) => (
-                      <button key={s.key} onClick={() => { setActive(i); setIdx(0); }} className={`relative z-10 flex-1 px-4 py-2 text-sm font-medium rounded-md ${active === i ? 'text-black' : 'text-gray-300'} ${active === i ? theme.accentBg : ''}`}>
+                      <button key={s.key} onClick={() => { setActive(i); setIdx(0); }} className={`relative z-10 flex-1 px-4 py-2 text-sm font-medium rounded-md ${active === i ? 'text-white' : 'text-gray-300'} ${active === i ? theme.accentBg : ''}`}>
                         {s.label}
                       </button>
                     ))}
