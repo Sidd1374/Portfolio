@@ -85,20 +85,20 @@ const t = (personaKey) => THEME[personaKey] || THEME.builder;
 
 const PERSONA_SUMMARIES = {
   builder: [
-    { label: "Professional Exp", value: "1.5+ Years", icon: <Briefcase size={18} /> },
+    { label: "Professional Exp", value: "6 Months", icon: <Briefcase size={18} /> },
     { label: "Clients Catered", value: "3+ Clients", icon: <Users size={18} /> },
-    { label: "Total Projects", value: "8+ Shipped", icon: <Code size={18} /> },
+    { label: "Total Projects", value: "5+ Shipped", icon: <Code size={18} /> },
     { label: "Tech Stack", value: "Flutter/AI", icon: <Cpu size={18} /> }
   ],
   leader: [
     { label: "Leadership Roles", value: "3 Positions", icon: <Award size={18} /> },
-    { label: "Events Managed", value: "30+ Events", icon: <Calendar size={18} /> },
-    { label: "Team Size", value: "50+ Members", icon: <Users size={18} /> },
+    { label: "Events Managed", value: "50+ Events", icon: <Calendar size={18} /> },
+    { label: "Team Size", value: "40+ Members", icon: <Users size={18} /> },
     { label: "Impact", value: "University Level", icon: <Globe size={18} /> }
   ],
   creator: [
-    { label: "Editing Exp", value: "2+ Years", icon: <Video size={18} /> },
-    { label: "Content Pieces", value: "15+ Created", icon: <Clapperboard size={18} /> },
+    { label: "Editing Exp", value: "4+ Years", icon: <Video size={18} /> },
+    { label: "Content Pieces", value: "20+ Created", icon: <Clapperboard size={18} /> },
     { label: "Campaigns", value: "5+ Led", icon: <Megaphone size={18} /> },
     { label: "Software", value: "Adobe Suite", icon: <Monitor size={18} /> }
   ]
@@ -109,7 +109,7 @@ const RPG_STATS = {
     { label: "Logic & Reasoning", value: 95, icon: <Brain size={16} /> },
     { label: "Caffeine Tolerance", value: 100, icon: <Coffee size={16} /> },
     { label: "Bug Fix Speed", value: 85, icon: <Zap size={16} /> },
-    { label: "System Architecture", value: 90, icon: <Layers size={16} /> }
+    { label: "Database", value: 90, icon: <Layers size={16} /> }
   ],
   leader: [
     { label: "Charisma", value: 90, icon: <Star size={16} /> },
@@ -133,14 +133,15 @@ const SKILLS_DATA = {
       items: [
         { name: "Python", level: 90 },
         { name: "Java", level: 85 },
-        { name: "SQL", level: 75 },
+        { name: "Dart", level: 90 },
+        { name: "SQL", level: 90 },
         { name: "C++", level: 70 }
       ] 
     },
     { 
       category: "Frameworks", 
       items: [
-        { name: "Flutter", level: 95 },
+        { name: "Flutter", level: 90 },
         { name: "Firebase", level: 90 }
       ] 
     },
@@ -158,7 +159,8 @@ const SKILLS_DATA = {
         { name: "Data Structures", level: 85 },
         { name: "Algorithms", level: 80 },
         { name: "OOPs", level: 90 },
-        { name: "DBMS", level: 95 }
+        { name: "DBMS", level: 95 },
+        { name: "Data Analytics", level: 80 }
       ] 
     }
   ],
@@ -202,7 +204,6 @@ const SKILLS_DATA = {
       items: [
         { name: "Premiere Pro", level: 90 },
         { name: "After Effects", level: 75 },
-        { name: "DaVinci Resolve", level: 60 },
         { name: "CapCut", level: 95 }
       ] 
     },
@@ -227,6 +228,8 @@ const SKILLS_DATA = {
       items: [
         { name: "YouTube Analytics", level: 85 },
         { name: "Social Growth", level: 80 },
+        { name: "Digital Marketing", level: 85 },
+        { name: "Add Campaigns(Meta/Google)", level: 80 },
         { name: "Engagement", level: 85 }
       ] 
     }
@@ -292,7 +295,8 @@ const FULL_DATA = [
     id: 2,
     year: "Oct 2025 - Present",
     title: "Operations Manager",
-    organization: "WictroniX",description: "Managing team operations, ensuring smooth internal workflows and handling client communication.",
+    organization: "WictroniX",
+    description: "Managing team operations, ensuring smooth internal workflows and handling client communication.",
     category: "experience",
     personas: ["leader"], 
     icon: <Briefcase className="w-6 h-6" />,
@@ -303,8 +307,9 @@ const FULL_DATA = [
       images: ["Team Meeting", "Workflow Diagram"]
     }
   },
+  // Project Lead (Podcasts) promoted to top of creator timeline
   {
-    id: 201, 
+    id: 201,
     year: "2024 - 2025",
     title: "Project Lead (Podcasts)",
     organization: "Insight Universe",
@@ -316,37 +321,22 @@ const FULL_DATA = [
       challenge: "Creating engaging long-form content for a university audience.",
       solution: "Revamped editing style and improved audio mastering.",
       tech: ["Audio Editing", "Podcast Production", "Content Strategy"],
-      images: ["kk3.jpeg", ]
+      images: ["kk3.jpeg"]
     }
   },
-  {
-    id: 202,
-    year: "2024",
-    title: "Multimedia Director",
-    organization: "Connecting All Circles Club",
-    description: "Led content creation for events and campaigns. Edited promos, after-movies, and reels.",
-    category: "media",
-    personas: ["creator"],
-    icon: <Clapperboard className="w-6 h-6" />,
-    details: {
-      challenge: "Delivering high-quality event coverage with tight deadlines.",
-      solution: "Streamlined the 'shoot-to-edit' workflow for same-day uploads.",
-      tech: ["Premiere Pro", "Videography", "Team Management"],
-      images: ["Editing Timeline", "Event Aftermovie"]
-    }
-  },
+  
   {
     id: 3,
     year: "May 2025 - Aug 2025",
     title: "Flutter Developer",
     organization: "Kampus Konnect",
-    description: "Frontend development for a client project, delivering a fully functional mobile application.",
+    description: "Frontend development for a client project — implemented pixel-perfect Flutter UI, collaborated with designers and delivered a production-ready mobile app within sprint deadlines.",
     category: "experience",
     personas: ["builder"],
     icon: <Smartphone className="w-6 h-6" />,
     details: {
-      challenge: "Meeting strict client requirements for UI/UX.",
-      solution: "Delivered a pixel-perfect Flutter frontend ahead of schedule.",
+      challenge: "Delivering a pixel-perfect UI matching detailed client specifications within a tight timeline and frequent change requests.",
+      solution: "Built reusable widget libraries, set up rapid feedback demos with the client, and iterated quickly to meet UI/UX expectations ahead of schedule.",
       tech: ["Flutter", "Dart", "Mobile Dev"],
       images: ["kk1.jpeg", "kk2.jpeg", "kk3.jpeg"]
     }
@@ -364,7 +354,7 @@ const FULL_DATA = [
       challenge: "Ensuring user privacy and real-time messaging.",
       solution: "Integrated Firebase Cloud Messaging & encryption protocols.",
       tech: ["Flutter", "Firebase", "FCM", "Security"],
-      images: ["Chat UI", "Security Diagram"]
+      images: ["chat.png", "chat2.png", "chat3.png", "chat4.png","chat5.png", "chat6.png", "chat7.png"]
     }
   },
   {
@@ -380,7 +370,7 @@ const FULL_DATA = [
       challenge: "Solving a complex cyber-security problem in 24 hours.",
       solution: "Developed a prototype that impressed the judges.",
       tech: ["Problem Solving", "Rapid Prototyping"],
-      images: ["cyberthonai1.jpeg", "cyberthonai2.jpeg", "cyberthonai3.jpeg", "cyberthonai4.jpeg"]
+      images: ["cyberthonai4.jpeg", "cyberthonai2.jpeg", "cyberthonai3.jpeg", "cyberthonai1.jpeg"]
     }
   },
     {
@@ -399,26 +389,11 @@ const FULL_DATA = [
       images: ["tricity1.jpeg", "tricity2.jpeg", "tricity3.jpeg"]
     }
   },
-  {
-    id: 6,
-    year: "Leadership & Events",
-    title: "Secretary & Director",
-    organization: "Microsoft Student Chapter & C.A.C. Club",
-    description: "Managed 30+ university events. Directed podcast production for Insight Universe.",
-    category: "leadership",
-    personas: ["leader"],
-    icon: <Users className="w-6 h-6" />,
-    details: {
-      challenge: "Leading diverse teams and managing large-scale events.",
-      solution: "Organized 30+ successful events and led content campaigns.",
-      tech: ["Leadership", "Event Management", "Content Creation"],
-      images: ["kk2.jpeg"]
-    }
-  },
+  
   {
     id: 7,
     year: "2024",
-    title: "Production Line App",
+    title: "Care Utility (Production Line App)",
     organization: "Project",
     description: "Streamlined production line operations, improving efficiency by 40%.",
     category: "project",
@@ -431,22 +406,176 @@ const FULL_DATA = [
       images: ["careutility1.jpeg", "careutility2.jpeg", "careutility3.jpeg", "careutility4.jpeg", "careutility5.jpeg"]
     }
   },
+
+  ,
+  // --- Additional detailed experiences from user input ---
+
   {
-    id: 8,
-    year: "June 2024 - July 2024",
-    title: "ML Intern",
-    organization: "CETPA Infotech Pvt. Ltd.",
-    description: "Developed social media reach analysis and prediction models using Python.",
+    id: 302,
+    year: "Feb 2025 - Jun 2025",
+    title: "Secretary",
+    organization: "Microsoft Student Chapter, Chandigarh University",
+    description: "Served as Secretary, coordinating chapter operations, communication, and event logistics across teams.",
+    category: "leadership",
+    personas: ["leader"],
+    icon: <Users className="w-6 h-6" />,
+    details: {
+      challenge: "Coordinating schedules and communications across multiple sub-teams during a busy semester.",
+      solution: "Introduced structured documentation, weekly syncs, and a shared calendar which reduced conflicts and improved on-time deliveries.",
+      tech: ["Event Coordination", "Slack", "Google Workspace"],
+      images: ["msc_secretary1.jpeg"]
+    }
+  },
+  {
+    id: 303,
+    year: "Jan 2025 - Jun 2025",
+    title: "Multimedia Director",
+    organization: "Connecting All Circles (C.A.C.)",
+    description: "Promoted to Director - Multimedia to oversee the club's entire media strategy, production pipelines and mentor the media team.",
+    category: "media",
+    personas: ["creator", "leader"],
+    icon: <Clapperboard className="w-6 h-6" />,
+    details: {
+      challenge: "Scaling production to cover 20+ events while maintaining consistent quality.",
+      solution: "Defined a shoot-to-edit pipeline, created templates for faster edits, and ran mentorship sessions for junior members.",
+      tech: ["Premiere Pro", "After Effects", "Team Management"],
+      images: ["cac_director1.jpeg", "cac_event1.jpeg"]
+    }
+  },
+  // move WictroniX (video editor - client projects) here so it's between CAC Director and Project Lead in the creator timeline
+  {
+    id: 306,
+    year: "Nov 2024 - May 2025",
+    title: "Video Editor (Client Projects)",
+    organization: "WictroniX",
+    description: "Handled multiple client projects, producing tailored video content and managing client communication end-to-end.",
     category: "experience",
+    personas: ["creator"],
+    icon: <Briefcase className="w-6 h-6" />,
+    details: {
+      challenge: "Balancing client expectations across several concurrent projects.",
+      solution: "Maintained clear client feedback cycles, used versioned deliverables, and standardized export presets.",
+      tech: ["Premiere Pro", "Client Relations", "Project Management"],
+      images: ["wictronix1.jpeg"]
+    }
+  },
+  
+  {
+    id: 304,
+    year: "Aug 2024 - Dec 2024",
+    title: "Multimedia Executive",
+    organization: "Connecting All Circles (C.A.C.)",
+    description: "Managed media production and event promotion material across university and regional events.",
+    category: "media",
+    personas: ["creator"],
+    icon: <Video className="w-6 h-6" />,
+    details: {
+      challenge: "Delivering high-quality promotional content under tight deadlines.",
+      solution: "Prioritized key deliverables, reused templates, and organized small edit pods to speed up delivery.",
+      tech: ["Premiere Pro", "DaVinci Resolve", "Content Strategy"],
+      images: ["cac_exec1.jpeg"]
+    }
+  },
+  {
+    id: 305,
+    year: "Jul 2024 - Aug 2024",
+    title: "Video Editor",
+    organization: "Connecting All Circles (C.A.C.)",
+    description: "Primary video editor responsible for event highlights, promos and timely deliverables during peak event periods.",
+    category: "media",
+    personas: ["creator"],
+    icon: <Video className="w-6 h-6" />,
+    details: {
+      challenge: "Quick turnarounds with limited crew and tight event schedules.",
+      solution: "Created modular sequences and presets to speed up edits and approvals.",
+      tech: ["Premiere Pro", "After Effects"],
+      images: ["cac_editor1.jpeg"]
+    }
+  },
+  
+  {
+    id: 307,
+    year: "Sep 2024 - Dec 2024",
+    title: "Multimedia Director",
+    organization: "E-Cell, Chandigarh University",
+    description: "Led the multimedia team to produce promotional assets and video content for entrepreneurship events.",
+    category: "media",
+    personas: ["creator"],
+    icon: <Monitor className="w-6 h-6" />,
+    details: {
+      challenge: "Creating high-impact promotional content aligned with event messaging.",
+      solution: "Collaborated closely with event leads, designed content calendars and optimized promotional pipelines.",
+      tech: ["Figma", "Premiere Pro", "Campaign Planning"],
+      images: ["ecell1.jpeg"]
+    }
+  },
+  {
+    id: 308,
+    year: "Jun 2024 - Jul 2024",
+    title: "Video Editor Intern",
+    organization: "Academics@CU",
+    description: "Supported the Video Lecture Recording (VLR) studio by editing lectures and departmental videos to quality standards.",
+    category: "experience",
+    personas: ["creator"],
+    icon: <Video className="w-6 h-6" />,
+    details: {
+      challenge: "Editing lecture recordings quickly while ensuring clarity and departmental compliance.",
+      solution: "Implemented standardized templates and a review checklist which reduced rework.",
+      tech: ["Premiere Pro", "Audio Editing"],
+      images: ["academics1.jpeg"]
+    }
+  },
+  {
+    id: 309,
+    year: "May 2024 - Jun 2024",
+    title: "Summer Training - Machine Learning",
+    organization: "CETPA Infotech Pvt. Ltd.",
+    description: "Completed a focused summer training on machine learning, building a social media reach prediction model.",
+    category: "training",
     personas: ["builder"],
     icon: <Terminal className="w-6 h-6" />,
     details: {
-      challenge: "Analyzing unstructured social media data.",
-      solution: "Created a predictive model for reach analysis.",
-      tech: ["Python", "Machine Learning", "Data Analysis"],
-      images: ["Data Graph", "Prediction Model"]
+      challenge: "Working with noisy social media datasets and extracting features for prediction.",
+      solution: "Applied preprocessing pipelines, feature engineering and model validation to improve accuracy.",
+      tech: ["Python", "scikit-learn", "Pandas"],
+      images: ["siddhathml.jpg"]
     }
   }
+  ,
+  {
+    id: 310,
+    year: "Jan 2025 - Jun 2025",
+    title: "Multimedia Executive",
+    organization: "Connecting All Circles (C.A.C.)",
+    description: "Operated as Multimedia Executive, coordinating production teams and ensuring consistent, on-time delivery of media across university and regional events.",
+    category: "leadership",
+    personas: ["leader"],
+    icon: <Users className="w-6 h-6" />,
+    details: {
+      challenge: "Aligning schedules across camera crews, editors and event leads while keeping high production quality under tight deadlines.",
+      solution: "Introduced a central production calendar, delegated shift leads, standardized export presets and QA checklists which reduced turnaround time and improved consistency.",
+      tech: ["Project Management", "Premiere Pro", "DaVinci Resolve", "Team Coordination"],
+      images: ["cac_exec_leader1.jpeg"]
+    }
+  },
+   // E-Cell Multimedia Director duplicated for leader persona (bottom of timeline)
+  {
+    id: 311,
+    year: "Sep 2024 - Dec 2024",
+    title: "Multimedia Director",
+    organization: "E-Cell, Chandigarh University",
+    description: "Led the multimedia team to produce promotional assets and video content for entrepreneurship events.",
+    category: "leadership",
+    personas: ["leader"],
+    icon: <Monitor className="w-6 h-6" />,
+    details: {
+      challenge: "Creating high-impact promotional content aligned with event messaging.",
+      solution: "Collaborated closely with event leads, designed content calendars and optimized promotional pipelines.",
+      tech: ["Figma", "Premiere Pro", "Campaign Planning"],
+      images: ["ecell1.jpeg"]
+    }
+  }
+  
 ];
 
 // --- COMPONENT: Persona Summary Card ---
@@ -499,16 +628,17 @@ const SkillsModal = ({ isOpen, onClose, category, skills, theme }) => {
             className={`relative w-full max-w-lg bg-gray-900 border ${theme.borderMedium} rounded-2xl overflow-hidden shadow-2xl p-6 md:p-8`}
             onClick={(e) => e.stopPropagation()}
           >
-             <button 
-                onClick={onClose}
-                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-800 text-gray-400 hover:text-white transition-colors"
-              >
-                <X size={24} />
-              </button>
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-800 text-gray-400 hover:text-white transition-colors"
+            >
+              <X size={24} />
+            </button>
 
             <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
               <span className={theme.accent}>//</span> {category}
             </h2>
+
             <div className="space-y-6">
               {skills.map((skill, idx) => (
                 <div key={idx}>
@@ -517,10 +647,10 @@ const SkillsModal = ({ isOpen, onClose, category, skills, theme }) => {
                     <span className={theme.accent}>{skill.level}%</span>
                   </div>
                   <div className="h-2.5 bg-gray-800 rounded-full overflow-hidden">
-                    <motion.div 
+                    <motion.div
                       initial={{ width: '0%' }}
                       animate={{ width: `${skill.level}%` }}
-                      transition={{ duration: 1, ease: "easeOut", delay: idx * 0.1 }}
+                      transition={{ duration: 1, ease: 'easeOut', delay: idx * 0.08 }}
                       className={`h-full bg-gradient-to-r ${theme.gradientDeep}`}
                     />
                   </div>
@@ -1121,14 +1251,18 @@ export default function Portfolio() {
           {/* Content Side (Text) */}
           <div className="text-center md:text-left order-2 md:order-1">
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-6 flex justify-center md:justify-start"
-            >
-              <span className="inline-block px-4 py-2 rounded-full text-sm font-medium bg-gray-900/80 border border-gray-700 text-gray-300 backdrop-blur-sm shadow-lg">
-                Available for New Opportunities
-              </span>
-            </motion.div>
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 flex justify-center"
+              >
+                <button
+                  onClick={(e) => { e.preventDefault(); const el = document.getElementById('contact'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
+                  className="fixed left-1/2 top-20 md:top-24 -translate-x-1/2 z-60 inline-block px-4 py-2 rounded-full text-sm font-medium bg-gray-900/80 border border-gray-700 text-gray-300 backdrop-blur-sm shadow-lg hover:bg-gray-800 transition-colors"
+                  aria-label="Jump to contact"
+                >
+                  Available for New Opportunities
+                </button>
+              </motion.div>
             
             <motion.h1 
               key={persona} 
@@ -1161,7 +1295,7 @@ export default function Portfolio() {
               <a href="https://github.com/Sidd1374" target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-600 transition-all flex items-center gap-2 text-sm font-medium group">
                 <Github size={16} className="group-hover:text-white" /> GitHub
               </a>
-              <a href={RESUME_PATH} className={`px-4 py-2 rounded-lg bg-gray-900/80 border ${theme.borderMedium} ${theme.accent} ${theme.hoverBg} transition-all flex items-center gap-2 text-sm font-medium`}>
+              <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className={`px-4 py-2 rounded-lg bg-gray-900/80 border ${theme.borderMedium} ${theme.accent} ${theme.hoverBg} transition-all flex items-center gap-2 text-sm font-medium`}>
                 <Download size={16} /> CV
               </a>
             </motion.div>
@@ -1169,7 +1303,7 @@ export default function Portfolio() {
           </div>
 
           {/* Image Side - Center on mobile, Right on Desktop */}
-          <div className="flex justify-center md:justify-end order-1 md:order-2">
+          <div className="flex justify-center md:justify-mid order-1 md:order-2">
             <motion.div
                initial={{ opacity: 0, scale: 0.8 }}
                animate={{ opacity: 1, scale: 1 }}
@@ -1269,7 +1403,7 @@ export default function Portfolio() {
       <GalleryModal isOpen={galleryOpen} onClose={closeGallery} images={galleryImages} category={galleryCategory} theme={theme} />
 
       {/* Contact Section */}
-      <section className="py-24 px-6 text-center">
+      <section id="contact" className="py-24 px-6 text-center">
         <div className="max-w-2xl mx-auto">
           <div className={`w-16 h-16 mx-auto ${theme.accentBg} rounded-full flex items-center justify-center ${theme.accent} mb-6`}>
              <Mail size={32} />
