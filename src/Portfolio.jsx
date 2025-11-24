@@ -43,6 +43,7 @@ const RESUME_PATH = `${import.meta.env.BASE_URL}siddharth_resume.pdf`;
 
 const createTheme = (color, rgb) => ({
   color,
+  rgb,
   accent: `text-${color}-400`,
   accentLight: `text-${color}-300`,
   accentBg: `bg-${color}-500/10`,
@@ -1243,6 +1244,22 @@ export default function Portfolio() {
       </nav>
 
       {/* Hero Section */}
+      {/* Available badge placed between nav and hero */}
+      <div className={`fixed left-1/2 -translate-x-1/2 top-12 md:top-16 z-50 transition-all duration-300 ${scrolled ? 'opacity-0 -translate-y-6 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
+        <a
+          href="#contact"
+          onClick={(e) => { e.preventDefault(); const el = document.getElementById('contact'); if (el) el.scrollIntoView({ behavior: 'smooth' }); else window.location.hash = '#contact'; }}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); const el = document.getElementById('contact'); if (el) el.scrollIntoView({ behavior: 'smooth' }); else window.location.hash = '#contact'; } }}
+          tabIndex={0}
+          role="button"
+          aria-label="Jump to contact"
+          className={`inline-block px-4 py-2 rounded-full text-sm font-medium bg-gray-900/90 border border-gray-700 text-gray-200 backdrop-blur-sm shadow-lg hover:bg-gray-800 transition-colors ${!scrolled ? 'animate-pulse' : ''}`}
+          style={{ zIndex: 9999 }}
+        >
+          Available for New Opportunities
+        </a>
+      </div>
+
       <header className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-20 overflow-hidden">
         <div className={`absolute inset-0 bg-gradient-to-b ${bgGradientClass} opacity-40 transition-colors duration-500`} />
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
@@ -1255,13 +1272,6 @@ export default function Portfolio() {
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-6 flex justify-center"
               >
-                <button
-                  onClick={(e) => { e.preventDefault(); const el = document.getElementById('contact'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
-                  className="fixed left-1/2 top-20 md:top-24 -translate-x-1/2 z-60 inline-block px-4 py-2 rounded-full text-sm font-medium bg-gray-900/80 border border-gray-700 text-gray-300 backdrop-blur-sm shadow-lg hover:bg-gray-800 transition-colors"
-                  aria-label="Jump to contact"
-                >
-                  Available for New Opportunities
-                </button>
               </motion.div>
             
             <motion.h1 
@@ -1303,21 +1313,40 @@ export default function Portfolio() {
           </div>
 
           {/* Image Side - Center on mobile, Right on Desktop */}
-          <div className="flex justify-center md:justify-mid order-1 md:order-2">
-            <motion.div
-               initial={{ opacity: 0, scale: 0.8 }}
-               animate={{ opacity: 1, scale: 1 }}
-               transition={{ duration: 0.5 }}
-              className={`relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full border-4 ${theme.borderMedium} overflow-hidden shadow-2xl ${theme.shadowStrong}`}
-            >
-              <img 
-                src={PROFILE_IMAGE}
-                alt="Siddharth Sharma" 
-                className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+          <div className="flex justify-center md:justify-mid order-1 md:order-2 mt-8 md:mt-0">
+            <div className="relative">
+              {/* Animated pulsing background using Framer Motion and persona RGB */}
+              <motion.div
+                aria-hidden
+                className={`absolute -inset-6 rounded-full pointer-events-none`}
+                style={{ filter: 'blur(80px)', zIndex: 0 }}
+                animate={{
+                  backgroundColor: [
+                    `rgba(${theme.rgb}, 0.12)`,
+                    `rgba(${theme.rgb}, 0.30)`,
+                    `rgba(${theme.rgb}, 0.12)`
+                  ],
+                  opacity: [0.65, 0.9, 0.65],
+                  scale: [1, 1.04, 1]
+                }}
+                transition={{ duration: 1.4, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' }}
               />
-               {/* Glow Effect */}
-              <div className={`absolute inset-0 bg-gradient-to-tr ${theme.gradientOverlay} to-transparent pointer-events-none`} />
-            </motion.div>
+
+              <motion.div
+                 initial={{ opacity: 0, scale: 0.8 }}
+                 animate={{ opacity: 1, scale: 1 }}
+                 transition={{ duration: 0.5 }}
+                className={`relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full border-4 ${theme.borderMedium} overflow-hidden shadow-2xl ${theme.shadowStrong} z-10`}
+              >
+                <img
+                  src={PROFILE_IMAGE}
+                  alt="Siddharth Sharma"
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500 relative"
+                />
+                 {/* Glow Effect */}
+                <div className={`absolute inset-0 bg-gradient-to-tr ${theme.gradientOverlay} to-transparent pointer-events-none`} />
+              </motion.div>
+            </div>
           </div>
         </div>
 
