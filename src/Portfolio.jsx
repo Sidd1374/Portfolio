@@ -110,7 +110,7 @@ const RPG_STATS = {
   builder: [
     { label: "Logic & Reasoning", value: 95, icon: <Brain size={16} /> },
     { label: "Caffeine Tolerance", value: 100, icon: <Coffee size={16} /> },
-    { label: "Bug Fix Speed", value: 85, icon: <Zap size={16} /> },
+    { label: "Bug Fix Speed", value: 90, icon: <Zap size={16} /> },
     { label: "Database", value: 90, icon: <Layers size={16} /> }
   ],
   leader: [
