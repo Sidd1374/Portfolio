@@ -289,7 +289,7 @@ const FULL_DATA = [
       challenge: "Balancing academics with 30+ events.",
       solution: "Learned ruthless time management.",
       tech: ["Data Structures", "Algorithms", "OS"],
-      images: ["University Campus", "Graduation Hat"]
+    //  images: ["University Campus", "Graduation Hat"]
     }
   },
   {
@@ -305,7 +305,7 @@ const FULL_DATA = [
       challenge: "Coordinating cross-team efforts for timely delivery.",
       solution: "Implemented new workflow protocols reducing bottlenecks.",
       tech: ["Management", "Client Relations", "Process Mapping"],
-      images: ["Team Meeting", "Workflow Diagram"]
+      //images: ["Team Meeting", "Workflow Diagram"]
     }
   },
   // Project Lead (Podcasts) promoted to top of creator timeline
@@ -339,7 +339,7 @@ const FULL_DATA = [
       challenge: "Delivering a pixel-perfect UI matching detailed client specifications within a tight timeline and frequent change requests.",
       solution: "Built reusable widget libraries, set up rapid feedback demos with the client, and iterated quickly to meet UI/UX expectations ahead of schedule.",
       tech: ["Flutter", "Dart", "Mobile Dev"],
-      images: ["kk1.jpeg", "kk2.jpeg", "kk3.jpeg"]
+      //images: ["kk1.jpeg", "kk2.jpeg", "kk3.jpeg"]
     }
   },
   {
@@ -424,7 +424,7 @@ const FULL_DATA = [
       challenge: "Coordinating schedules and communications across multiple sub-teams during a busy semester.",
       solution: "Introduced structured documentation, weekly syncs, and a shared calendar which reduced conflicts and improved on-time deliveries.",
       tech: ["Event Coordination", "Slack", "Google Workspace"],
-      images: ["msc_secretary1.jpeg"]
+    //  images: ["msc_secretary1.jpeg"]
     }
   },
   {
@@ -440,7 +440,7 @@ const FULL_DATA = [
       challenge: "Scaling production to cover 20+ events while maintaining consistent quality.",
       solution: "Defined a shoot-to-edit pipeline, created templates for faster edits, and ran mentorship sessions for junior members.",
       tech: ["Premiere Pro", "After Effects", "Team Management"],
-      images: ["cac_director1.jpeg", "cac_event1.jpeg"]
+      //images: ["cac_director1.jpeg", "cac_event1.jpeg"]
     }
   },
   // move WictroniX (video editor - client projects) here so it's between CAC Director and Project Lead in the creator timeline
@@ -457,7 +457,7 @@ const FULL_DATA = [
       challenge: "Balancing client expectations across several concurrent projects.",
       solution: "Maintained clear client feedback cycles, used versioned deliverables, and standardized export presets.",
       tech: ["Premiere Pro", "Client Relations", "Project Management"],
-      images: ["wictronix1.jpeg"]
+    //  images: ["wictronix1.jpeg"]
     }
   },
   
@@ -474,7 +474,7 @@ const FULL_DATA = [
       challenge: "Delivering high-quality promotional content under tight deadlines.",
       solution: "Prioritized key deliverables, reused templates, and organized small edit pods to speed up delivery.",
       tech: ["Premiere Pro", "DaVinci Resolve", "Content Strategy"],
-      images: ["cac_exec1.jpeg"]
+     // images: ["cac_exec1.jpeg"]
     }
   },
   {
@@ -490,7 +490,7 @@ const FULL_DATA = [
       challenge: "Quick turnarounds with limited crew and tight event schedules.",
       solution: "Created modular sequences and presets to speed up edits and approvals.",
       tech: ["Premiere Pro", "After Effects"],
-      images: ["cac_editor1.jpeg"]
+    //  images: ["cac_editor1.jpeg"]
     }
   },
   
@@ -507,7 +507,7 @@ const FULL_DATA = [
       challenge: "Creating high-impact promotional content aligned with event messaging.",
       solution: "Collaborated closely with event leads, designed content calendars and optimized promotional pipelines.",
       tech: ["Figma", "Premiere Pro", "Campaign Planning"],
-      images: ["ecell1.jpeg"]
+     // images: ["ecell1.jpeg"]
     }
   },
   {
@@ -523,7 +523,7 @@ const FULL_DATA = [
       challenge: "Editing lecture recordings quickly while ensuring clarity and departmental compliance.",
       solution: "Implemented standardized templates and a review checklist which reduced rework.",
       tech: ["Premiere Pro", "Audio Editing"],
-      images: ["academics1.jpeg"]
+    //  images: ["academics1.jpeg"]
     }
   },
   {
@@ -556,7 +556,7 @@ const FULL_DATA = [
       challenge: "Aligning schedules across camera crews, editors and event leads while keeping high production quality under tight deadlines.",
       solution: "Introduced a central production calendar, delegated shift leads, standardized export presets and QA checklists which reduced turnaround time and improved consistency.",
       tech: ["Project Management", "Premiere Pro", "DaVinci Resolve", "Team Coordination"],
-      images: ["cac_exec_leader1.jpeg"]
+     // images: ["cac_exec_leader1.jpeg"]
     }
   },
    // E-Cell Multimedia Director duplicated for leader persona (bottom of timeline)
@@ -573,10 +573,27 @@ const FULL_DATA = [
       challenge: "Creating high-impact promotional content aligned with event messaging.",
       solution: "Collaborated closely with event leads, designed content calendars and optimized promotional pipelines.",
       tech: ["Figma", "Premiere Pro", "Campaign Planning"],
-      images: ["ecell1.jpeg"]
+    //  images: ["ecell1.jpeg"]
     }
   }
-  
+  ,
+  {
+    id: 312,
+    year: "2023",
+    title: "Lottery Application",
+    organization: "Personal Project",
+    description: "Created a secure lottery app with Firebase Realtime Database for live ticket management and UPI payment integration.",
+    category: "project",
+    personas: ["builder"],
+    icon: <Smartphone className="w-6 h-6" />,
+    details: {
+      challenge: "Securely managing live tickets and payments within an Android environment.",
+      solution: "Integrated Firebase Realtime Database for live ticket state and implemented UPI transaction validation to prevent fraud. Built an XML-based Android UI for smooth user experience.",
+      tech: ["Java", "XML", "Firebase Realtime Database", "UPI Integration"],
+      // images: ["lottery1.jpeg"]
+    }
+  }
+
 ];
 
 // --- COMPONENT: Persona Summary Card ---
@@ -813,11 +830,12 @@ const PostTimelineSection = ({ theme, onOpenGallery }) => {
             <p className="text-gray-400">Leading from the front.</p>
           </div>
           <div className="flex gap-3">
-              <div>
+            {/* <div>
                 <button onClick={() => onOpenGallery()} className={`px-6 py-2 border ${theme.borderMedium} ${theme.accent} rounded-full ${theme.hoverBg} transition-colors text-sm font-medium`}>
                   View Gallery
                 </button>
-              </div>
+              </div> */}
+            {/* Gallery button intentionally hidden */}
           </div>
         </div>
 
@@ -1139,6 +1157,7 @@ export default function Portfolio() {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [galleryCategory, setGalleryCategory] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
+  const [contactOpen, setContactOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   // Filter Data
@@ -1441,9 +1460,9 @@ export default function Portfolio() {
            <p className="text-gray-400 mb-8">
             I am currently looking for full-time opportunities and challenging projects.
           </p>
-          <a href="mailto:sidd13704@gmail.com" className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r ${theme.gradientDeep} ${theme.hoverFrom} ${theme.hoverTo} rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-lg ${theme.shadowSoft}`}>
+          <button onClick={() => setContactOpen(true)} className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r ${theme.gradientDeep} ${theme.hoverFrom} ${theme.hoverTo} rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-lg ${theme.shadowSoft}`}>
             Start a Conversation <ChevronRight size={20} />
-          </a>
+          </button>
         </div>
       </section>
 
@@ -1461,6 +1480,129 @@ export default function Portfolio() {
         skills={selectedSkillCategory?.items}
         theme={theme} 
       />
+      <ContactModal isOpen={contactOpen} onClose={() => setContactOpen(false)} theme={theme} />
     </div>
   );
 }
+
+// --- COMPONENT: Contact Modal (Signal Boost / Project Intake) ---
+const ContactModal = ({ isOpen, onClose, theme }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [project, setProject] = useState('');
+  const [context, setContext] = useState('');
+  const [preferred, setPreferred] = useState('Email');
+
+  if (!isOpen) return null;
+
+  const sendMail = () => {
+    const to = 'sidd13704@gmail.com';
+    const subject = encodeURIComponent(`Portfolio inquiry: ${project || 'New opportunity'}`);
+    const body = encodeURIComponent([
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Preferred contact: ${preferred}`,
+      '',
+      `Project / Opportunity: ${project}`,
+      '',
+      `Context / Details:\n${context}`,
+      '',
+      '— Sent from portfolio contact form'
+    ].join('\n'));
+
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    onClose();
+  };
+
+  const info = [
+    { label: 'Phone', value: '+91 XXXX XXXX XX' },
+    { label: 'Available', value: 'Flexible hours' },
+    { label: 'Email', value: 'sidd13704@gmail.com' },
+    { label: 'Replies within', value: '24 hours' },
+    { label: 'LinkedIn', value: 'linkedin.com/in/siddharth', href: 'https://linkedin.com/in/siddharth' },
+    { label: 'GitHub', value: 'github.com/sidd1374', href: 'https://github.com/sidd1374' },
+  ];
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-60 flex items-center justify-center p-3 sm:p-4 bg-black/72 backdrop-blur-sm" onClick={onClose}>
+          <motion.div initial={{ scale: 0.98, y: 12 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.98, y: 12 }} transition={{ duration: 0.28 }} className={`relative w-full max-w-xs md:max-w-lg lg:max-w-xl bg-gray-900 border ${theme.borderMedium} rounded-2xl max-h-[85vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+            <div className={`h-1 w-full bg-gradient-to-r ${theme.gradientDeep}`} />
+            <button onClick={onClose} aria-label="Close contact" className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-800 text-gray-400 hover:text-white transition-colors"><X size={20} /></button>
+
+            <div className="p-3 md:p-4 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 items-start">
+              {/* Left: Profile + signal boost */}
+              <motion.div initial={{ x: -12, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.36 }} className="col-span-1">
+                <div className={`flex flex-col items-center text-center ${theme.accentBg} p-3 rounded-xl`}>
+                  <img src={PROFILE_IMAGE} alt="profile" className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-3 border-transparent shadow-lg mb-2" />
+                  <h3 className="text-lg font-bold text-white mb-1">Let's connect</h3>
+                  <p className="text-gray-300 text-xs mb-3">Full-stack builder focused on Flutter, AI/ML, and scalable backend systems. Open to freelance projects, collaborations, and full-time opportunities.</p>
+                </div>
+
+                <div className="mt-2 space-y-1">
+                  {info.map((it, i) => (
+                    <motion.div key={it.label} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.06 * i }} className="flex items-center justify-between bg-gray-800/40 border border-gray-800 rounded-md p-2">
+                      <div className="text-xs text-gray-300 font-medium">{it.label}</div>
+                      <div className="text-xs text-gray-200">
+                        {it.href ? <a href={it.href} target="_blank" rel="noreferrer" className="underline">{it.value}</a> : it.value}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="mt-2 text-xs text-gray-400">
+                  <p className="font-semibold mb-1">Available for</p>
+                  <ul className="list-none space-y-1">
+                    <li>• Freelance projects & contracts</li>
+                    <li>• Full-time opportunities</li>
+                    <li>• Startups & partnerships</li>
+                  </ul>
+                </div>
+              </motion.div>
+
+              {/* Right: Form */}
+              <motion.form onSubmit={(e) => { e.preventDefault(); sendMail(); }} initial={{ x: 12, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.36 }} className="col-span-1 md:col-span-1 bg-gray-900">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <div>
+                    <label className="block text-xs text-gray-300 mb-1">Name</label>
+                    <input required value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" className={`w-full bg-gray-800 border ${theme.borderMedium} rounded-md p-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-${theme.color}-400/40`} />
+                  </div>
+                  <div>
+                    <label className="block text-xs text-gray-300 mb-1">Email</label>
+                    <input required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com" className={`w-full bg-gray-800 border ${theme.borderMedium} rounded-md p-2 text-sm text-white`} />
+                  </div>
+                </div>
+
+                <div className="mt-2">
+                  <label className="block text-xs text-gray-300 mb-1">Project</label>
+                  <input value={project} onChange={(e) => setProject(e.target.value)} placeholder="Marketing site, Dashboard..." className={`w-full bg-gray-800 border ${theme.borderMedium} rounded-md p-2 text-sm text-white`} />
+                </div>
+
+                <div className="mt-2">
+                  <label className="block text-xs text-gray-300 mb-1">Context / Goals</label>
+                  <textarea value={context} onChange={(e) => setContext(e.target.value)} placeholder="Timelines, stack, constraints..." rows={4} className={`w-full bg-gray-800 border ${theme.borderMedium} rounded-md p-2 text-sm text-white`} />
+                </div>
+
+                <div className="mt-2 flex items-center gap-2">
+                  <label className="text-xs text-gray-300">Preferred contact</label>
+                  <select value={preferred} onChange={(e) => setPreferred(e.target.value)} className={`ml-2 bg-gray-800 border ${theme.borderMedium} rounded-md p-1 text-white text-xs`}>
+                    <option>Email</option>
+                    <option>Phone</option>
+                    <option>LinkedIn</option>
+                  </select>
+                </div>
+
+                <div className="mt-4 flex flex-col-reverse gap-2 md:flex-row md:justify-end">
+                  <button type="button" onClick={onClose} className="w-full md:w-auto px-3 py-1.5 text-sm rounded-md bg-gray-800 text-gray-300">Cancel</button>
+                  <button type="submit" className={`w-full md:w-auto px-3 py-1.5 text-sm rounded-md bg-gradient-to-r ${theme.gradientDeep} text-white font-semibold`}>Send</button>
+                </div>
+              </motion.form>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
