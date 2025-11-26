@@ -37,6 +37,7 @@ import {
   Monitor,
   Instagram
 } from 'lucide-react';
+import ContactPage from './Contact';
 
 const PROFILE_IMAGE = `${import.meta.env.BASE_URL}siddharth.jpg`;
 const RESUME_PATH = `${import.meta.env.BASE_URL}siddharth_resume.pdf`;
@@ -278,7 +279,7 @@ const EVENTS_HIGHLIGHTS = [
 const FULL_DATA = [
   {
     id: 1,
-    year: "2026 (Expected)",
+    year: "June 2026 (Expected)",
     title: "B.E. Computer Science",
     organization: "Chandigarh University",
     description: "Specializing in CSE with a CGPA of 7.17. Building the foundation of my technical career.",
@@ -301,6 +302,7 @@ const FULL_DATA = [
     category: "experience",
     personas: ["leader"], 
     icon: <Briefcase className="w-6 h-6" />,
+    status: "paid",
     details: {
       challenge: "Coordinating cross-team efforts for timely delivery.",
       solution: "Implemented new workflow protocols reducing bottlenecks.",
@@ -311,13 +313,14 @@ const FULL_DATA = [
   // Project Lead (Podcasts) promoted to top of creator timeline
   {
     id: 201,
-    year: "2024 - 2025",
+    year: "Sep 2024 - March 2025",
     title: "Project Lead (Podcasts)",
     organization: "Insight Universe",
     description: "Directed podcast series production, managing audio/video quality and content strategy.",
     category: "media",
     personas: ["creator", "leader"],
     icon: <Mic className="w-6 h-6" />,
+    youtubeLink: "https://www.youtube.com/@insightuniverse.official/",
     details: {
       challenge: "Creating engaging long-form content for a university audience.",
       solution: "Revamped editing style and improved audio mastering.",
@@ -335,6 +338,7 @@ const FULL_DATA = [
     category: "experience",
     personas: ["builder"],
     icon: <Smartphone className="w-6 h-6" />,
+    status: "paid",
     details: {
       challenge: "Delivering a pixel-perfect UI matching detailed client specifications within a tight timeline and frequent change requests.",
       solution: "Built reusable widget libraries, set up rapid feedback demos with the client, and iterated quickly to meet UI/UX expectations ahead of schedule.",
@@ -344,7 +348,7 @@ const FULL_DATA = [
   },
   {
     id: 4,
-    year: "2025",
+    year: "March 2025 - Present",
     title: "Veil - Anonymous Chat App",
     organization: "Personal Project",
     description: "A multi-platform chat app with interest-based matching and multi-level verification.",
@@ -360,7 +364,7 @@ const FULL_DATA = [
   },
   {
     id: 5,
-    year: "2025",
+    year: "June 2025",
     title: "Cyberthon.ai Runner-Up",
     organization: "Chandigarh Police Hackathon",
     description: "Recognized for innovative problem solving in a high-pressure hackathon environment.",
@@ -376,7 +380,7 @@ const FULL_DATA = [
   },
     {
     id: 9,
-    year: "2025",
+    year: "April 2025",
     title: "2nd Runner-Up, Hack with Tricity",
     organization: "North Zone Hackathon",
     description: "Built an innovative solution for local governance challenges and secured 2nd Runner-Up.",
@@ -393,13 +397,14 @@ const FULL_DATA = [
   
   {
     id: 7,
-    year: "2024",
+    year: "Feb 2024 - June 2024",
     title: "Care Utility (Production Line App)",
     organization: "Project",
     description: "Streamlined production line operations, improving efficiency by 40%.",
     category: "project",
     personas: ["builder"],
     icon: <Briefcase className="w-6 h-6" />,
+    status: "paid",
     details: {
       challenge: "Manual data entry was slowing down production.",
       solution: "Built a real-time Firestore app for inventory tracking.",
@@ -453,6 +458,7 @@ const FULL_DATA = [
     category: "experience",
     personas: ["creator"],
     icon: <Briefcase className="w-6 h-6" />,
+    status: "paid",
     details: {
       challenge: "Balancing client expectations across several concurrent projects.",
       solution: "Maintained clear client feedback cycles, used versioned deliverables, and standardized export presets.",
@@ -519,6 +525,7 @@ const FULL_DATA = [
     category: "experience",
     personas: ["creator"],
     icon: <Video className="w-6 h-6" />,
+    status: "paid",
     details: {
       challenge: "Editing lecture recordings quickly while ensuring clarity and departmental compliance.",
       solution: "Implemented standardized templates and a review checklist which reduced rework.",
@@ -579,18 +586,19 @@ const FULL_DATA = [
   ,
   {
     id: 312,
-    year: "2023",
+    year: "Sep 2023",
     title: "Lottery Application",
     organization: "Personal Project",
     description: "Created a secure lottery app with Firebase Realtime Database for live ticket management and UPI payment integration.",
     category: "project",
     personas: ["builder"],
     icon: <Smartphone className="w-6 h-6" />,
+    status: "paid",
     details: {
       challenge: "Securely managing live tickets and payments within an Android environment.",
       solution: "Integrated Firebase Realtime Database for live ticket state and implemented UPI transaction validation to prevent fraud. Built an XML-based Android UI for smooth user experience.",
       tech: ["Java", "XML", "Firebase Realtime Database", "UPI Integration"],
-      // images: ["lottery1.jpeg"]
+      images: ["lottery1.jpg", "lottery2.jpg"]
     }
   }
 
@@ -923,7 +931,15 @@ const Modal = ({ isOpen, onClose, data, theme }) => {
               <div className="flex items-center gap-3 mb-2 text-sm font-medium text-gray-400 uppercase tracking-wider">
                 <span>{data.year}</span><span>•</span><span>{data.organization}</span>
               </div>
-              <h2 className="text-3xl font-bold text-white mb-6">{data.title}</h2>
+              <div className="flex items-center gap-2 mb-6">
+                <h2 className="text-3xl font-bold text-white">{data.title}</h2>
+                {data.status === 'paid' && (
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-green-500/30 to-emerald-500/30 text-green-300 border border-green-500/50">💰 Paid</span>
+                )}
+                {data.youtubeLink && (
+                  <a href={data.youtubeLink} target="_blank" rel="noreferrer" className="px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-red-500/30 to-red-600/30 text-red-300 border border-red-500/50 hover:from-red-500/50 hover:to-red-600/50 transition-all">📺 Insight Universe</a>
+                )}
+              </div>
               {/* Image slider */}
               {hasImages && (
                 <div className="mb-8">
@@ -1135,6 +1151,12 @@ const TimelineNode = ({ data, index, theme, onClick }) => {
           <div 
             className={`p-6 rounded-2xl border transition-all duration-500 ${isInView ? `bg-gray-900/80 ${theme.borderMedium} shadow-[0_0_30px_rgba(0,0,0,0.3)] transform -translate-y-1` : 'bg-gray-900/30 border-gray-800'} hover:bg-gray-800/80`}>
             <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold mb-3 ${theme.badgeBg} ${theme.accent} border ${theme.borderSoft}`}>{data.year}</span>
+            {data.status === 'paid' && (
+              <span className="inline-block ml-2 px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-green-500/30 to-emerald-500/30 text-green-300 border border-green-500/50">💰 Paid</span>
+            )}
+            {data.youtubeLink && (
+              <a href={data.youtubeLink} target="_blank" rel="noreferrer" className="inline-block ml-2 px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-red-500/30 to-red-600/30 text-red-300 border border-red-500/50 hover:from-red-500/50 hover:to-red-600/50 transition-all">📺 Insight Universe</a>
+            )}
             <h3 className={`text-xl font-bold mb-1 transition-colors ${isInView ? 'text-white' : 'text-gray-300'}`}>{data.title}</h3>
             <p className="text-gray-400 text-sm mb-3 font-medium">{data.organization}</p>
             <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">{data.description}</p>
@@ -1197,6 +1219,22 @@ export default function Portfolio() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Sync contact page open state with the URL hash so the contact page is reachable directly.
+  useEffect(() => {
+    const handleHash = () => {
+      if (window.location.hash === '#contact-page') setContactOpen(true);
+      else setContactOpen(false);
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
+  // If contact page is open, show the contact page instead of the portfolio
+  if (contactOpen) {
+    return <ContactPage theme={theme} PROFILE_IMAGE={PROFILE_IMAGE} onBack={() => { setContactOpen(false); window.location.hash = ''; }} />;
+  }
 
   // Gallery handlers: build image arrays per category and open modal
   const openGallery = (category) => {
@@ -1460,7 +1498,7 @@ export default function Portfolio() {
            <p className="text-gray-400 mb-8">
             I am currently looking for full-time opportunities and challenging projects.
           </p>
-          <button onClick={() => setContactOpen(true)} className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r ${theme.gradientDeep} ${theme.hoverFrom} ${theme.hoverTo} rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-lg ${theme.shadowSoft}`}>
+          <button onClick={() => { setContactOpen(true); if (window.location.hash !== '#contact-page') window.location.hash = '#contact-page'; }} className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r ${theme.gradientDeep} ${theme.hoverFrom} ${theme.hoverTo} rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-lg ${theme.shadowSoft}`}>
             Start a Conversation <ChevronRight size={20} />
           </button>
         </div>
@@ -1480,129 +1518,9 @@ export default function Portfolio() {
         skills={selectedSkillCategory?.items}
         theme={theme} 
       />
-      <ContactModal isOpen={contactOpen} onClose={() => setContactOpen(false)} theme={theme} />
+
     </div>
   );
 }
 
-// --- COMPONENT: Contact Modal (Signal Boost / Project Intake) ---
-const ContactModal = ({ isOpen, onClose, theme }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [project, setProject] = useState('');
-  const [context, setContext] = useState('');
-  const [preferred, setPreferred] = useState('Email');
-
-  if (!isOpen) return null;
-
-  const sendMail = () => {
-    const to = 'sidd13704@gmail.com';
-    const subject = encodeURIComponent(`Portfolio inquiry: ${project || 'New opportunity'}`);
-    const body = encodeURIComponent([
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Preferred contact: ${preferred}`,
-      '',
-      `Project / Opportunity: ${project}`,
-      '',
-      `Context / Details:\n${context}`,
-      '',
-      '— Sent from portfolio contact form'
-    ].join('\n'));
-
-    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-    onClose();
-  };
-
-  const info = [
-    { label: 'Phone', value: '+91 XXXX XXXX XX' },
-    { label: 'Available', value: 'Flexible hours' },
-    { label: 'Email', value: 'sidd13704@gmail.com' },
-    { label: 'Replies within', value: '24 hours' },
-    { label: 'LinkedIn', value: 'linkedin.com/in/siddharth', href: 'https://linkedin.com/in/siddharth' },
-    { label: 'GitHub', value: 'github.com/sidd1374', href: 'https://github.com/sidd1374' },
-  ];
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-60 flex items-center justify-center p-3 sm:p-4 bg-black/72 backdrop-blur-sm" onClick={onClose}>
-          <motion.div initial={{ scale: 0.98, y: 12 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.98, y: 12 }} transition={{ duration: 0.28 }} className={`relative w-full max-w-xs md:max-w-lg lg:max-w-xl bg-gray-900 border ${theme.borderMedium} rounded-2xl max-h-[85vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-            <div className={`h-1 w-full bg-gradient-to-r ${theme.gradientDeep}`} />
-            <button onClick={onClose} aria-label="Close contact" className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-800 text-gray-400 hover:text-white transition-colors"><X size={20} /></button>
-
-            <div className="p-3 md:p-4 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 items-start">
-              {/* Left: Profile + signal boost */}
-              <motion.div initial={{ x: -12, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.36 }} className="col-span-1">
-                <div className={`flex flex-col items-center text-center ${theme.accentBg} p-3 rounded-xl`}>
-                  <img src={PROFILE_IMAGE} alt="profile" className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-3 border-transparent shadow-lg mb-2" />
-                  <h3 className="text-lg font-bold text-white mb-1">Let's connect</h3>
-                  <p className="text-gray-300 text-xs mb-3">Full-stack builder focused on Flutter, AI/ML, and scalable backend systems. Open to freelance projects, collaborations, and full-time opportunities.</p>
-                </div>
-
-                <div className="mt-2 space-y-1">
-                  {info.map((it, i) => (
-                    <motion.div key={it.label} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.06 * i }} className="flex items-center justify-between bg-gray-800/40 border border-gray-800 rounded-md p-2">
-                      <div className="text-xs text-gray-300 font-medium">{it.label}</div>
-                      <div className="text-xs text-gray-200">
-                        {it.href ? <a href={it.href} target="_blank" rel="noreferrer" className="underline">{it.value}</a> : it.value}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <div className="mt-2 text-xs text-gray-400">
-                  <p className="font-semibold mb-1">Available for</p>
-                  <ul className="list-none space-y-1">
-                    <li>• Freelance projects & contracts</li>
-                    <li>• Full-time opportunities</li>
-                    <li>• Startups & partnerships</li>
-                  </ul>
-                </div>
-              </motion.div>
-
-              {/* Right: Form */}
-              <motion.form onSubmit={(e) => { e.preventDefault(); sendMail(); }} initial={{ x: 12, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.36 }} className="col-span-1 md:col-span-1 bg-gray-900">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  <div>
-                    <label className="block text-xs text-gray-300 mb-1">Name</label>
-                    <input required value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" className={`w-full bg-gray-800 border ${theme.borderMedium} rounded-md p-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-${theme.color}-400/40`} />
-                  </div>
-                  <div>
-                    <label className="block text-xs text-gray-300 mb-1">Email</label>
-                    <input required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com" className={`w-full bg-gray-800 border ${theme.borderMedium} rounded-md p-2 text-sm text-white`} />
-                  </div>
-                </div>
-
-                <div className="mt-2">
-                  <label className="block text-xs text-gray-300 mb-1">Project</label>
-                  <input value={project} onChange={(e) => setProject(e.target.value)} placeholder="Marketing site, Dashboard..." className={`w-full bg-gray-800 border ${theme.borderMedium} rounded-md p-2 text-sm text-white`} />
-                </div>
-
-                <div className="mt-2">
-                  <label className="block text-xs text-gray-300 mb-1">Context / Goals</label>
-                  <textarea value={context} onChange={(e) => setContext(e.target.value)} placeholder="Timelines, stack, constraints..." rows={4} className={`w-full bg-gray-800 border ${theme.borderMedium} rounded-md p-2 text-sm text-white`} />
-                </div>
-
-                <div className="mt-2 flex items-center gap-2">
-                  <label className="text-xs text-gray-300">Preferred contact</label>
-                  <select value={preferred} onChange={(e) => setPreferred(e.target.value)} className={`ml-2 bg-gray-800 border ${theme.borderMedium} rounded-md p-1 text-white text-xs`}>
-                    <option>Email</option>
-                    <option>Phone</option>
-                    <option>LinkedIn</option>
-                  </select>
-                </div>
-
-                <div className="mt-4 flex flex-col-reverse gap-2 md:flex-row md:justify-end">
-                  <button type="button" onClick={onClose} className="w-full md:w-auto px-3 py-1.5 text-sm rounded-md bg-gray-800 text-gray-300">Cancel</button>
-                  <button type="submit" className={`w-full md:w-auto px-3 py-1.5 text-sm rounded-md bg-gradient-to-r ${theme.gradientDeep} text-white font-semibold`}>Send</button>
-                </div>
-              </motion.form>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-};
 
