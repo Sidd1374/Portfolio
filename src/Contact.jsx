@@ -56,11 +56,14 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
     <div
       className="min-h-screen text-white overflow-hidden relative"
       style={{
+        /* Mixed persona background (commented per request) - keep for reference
         backgroundImage: `radial-gradient(circle at 12% 18%, rgba(6,182,212,0.22) 0%, rgba(6,182,212,0.06) 30%, transparent 50%), radial-gradient(circle at 80% 72%, rgba(249,115,22,0.28) 0%, rgba(249,115,22,0.06) 45%, transparent 70%), radial-gradient(circle at 55% 40%, rgba(168,85,247,0.22) 0%, rgba(168,85,247,0.05) 35%, transparent 55%), linear-gradient(to bottom, #000000, #0f172a)`,
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
         backgroundSize: 'cover',
         backgroundBlendMode: 'screen, screen, screen, overlay'
+        */
+        backgroundColor: '#000000'
       }}
     >
       {/* Animated Background Elements */}
@@ -142,12 +145,12 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16"
+          className="w-full lg:w-[90vw] lg:max-w-none mx-auto grid grid-cols-1 lg:grid-cols-6 gap-8 lg:gap-10"
         >
           {/* LEFT SIDE - Signal Boost & Description */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col justify-start lg:col-span-3"
+            className="flex flex-col justify-between lg:col-span-3 min-h-[120vh] lg:min-h-screen"
           >
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -161,35 +164,37 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
               </div>
             </motion.div>
 
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Let's scope the next build{' '}
-              <motion.span
-                className={`bg-gradient-to-r ${theme.gradientDeep} bg-clip-text text-transparent`}
-                animate={{ backgroundPosition: ['0%', '100%', '0%'] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                together
-              </motion.span>
-            </h1>
+            <div className="flex-1 flex flex-col justify-center">
+              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                Let's scope the next build{' '}
+                <motion.span
+                  className={`bg-gradient-to-r ${theme.gradientDeep} bg-clip-text text-transparent`}
+                  animate={{ backgroundPosition: ['0%', '100%', '0%'] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  together
+                </motion.span>
+              </h1>
 
-            <motion.p
-              variants={itemVariants}
-              className="text-lg text-gray-400 leading-relaxed mb-12 max-w-lg"
-            >
-              I blend builder, leader, and creator sensibilities — shipping pragmatic systems, guiding teams on product strategy, and crafting expressive user experiences. Whether it's a founder-led product, marketing moment, or automation for ops, I usually respond the same day with a Loom walkthrough or clear steps.
-            </motion.p>
+              <motion.p
+                variants={itemVariants}
+                className="text-lg text-gray-400 leading-relaxed mb-12 max-w-[64rem]"
+              >
+                I blend builder, leader, and creator sensibilities — shipping pragmatic systems, guiding teams on product strategy, and crafting expressive user experiences. Whether it's a founder-led product, marketing moment, or automation for ops, I usually respond the same day with a Loom walkthrough or clear steps.
+              </motion.p>
+            </div>
 
             {/* Contact Details - Left Side */}
             <motion.div
               variants={itemVariants}
-              className="space-y-6"
+              className="space-y-2"
             >
               <div className="grid grid-cols-2 gap-6">
                 <motion.div
                   whileHover={{ y: -3 }}
-                  className="group border border-gray-700/40 rounded-2xl p-6 backdrop-blur-md bg-transparent hover:border-gray-600/60 transition-all duration-300 overflow-hidden relative"
+                  className="group border border-gray-700/40 rounded-3xl shadow-sm shadow-black/30 p-4 sm:p-5 md:p-6 h-full max-w-[18rem] w-full backdrop-blur-md bg-transparent hover:border-gray-600/60 transition-all duration-300 overflow-hidden relative"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
                   <div className="relative z-10">
                     <div className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-3 flex items-center gap-2">
                       <Phone size={14} className="group-hover:text-cyan-400 transition-colors" />
@@ -202,9 +207,9 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
 
                 <motion.div
                   whileHover={{ y: -3 }}
-                  className="group border border-gray-700/40 rounded-2xl p-6 backdrop-blur-md bg-transparent hover:border-gray-600/60 transition-all duration-300 overflow-hidden relative"
+                  className="group border border-gray-700/40 rounded-3xl shadow-sm shadow-black/30 p-4 sm:p-5 md:p-6 h-full max-w-[18rem] w-full backdrop-blur-md bg-transparent hover:border-gray-600/60 transition-all duration-300 overflow-hidden relative"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
                   <div className="relative z-10">
                     <div className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-3 flex items-center gap-2">
                       <Mail size={14} className="group-hover:text-orange-400 transition-colors" />
@@ -226,9 +231,9 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                   href="https://linkedin.com/in/siddharthsharma1374"
                   target="_blank"
                   rel="noreferrer"
-                  className="group border border-gray-700/40 rounded-2xl p-6 backdrop-blur-md bg-transparent hover:border-gray-600/60 transition-all duration-300 overflow-hidden relative"
+                  className="group border border-gray-700/40 rounded-3xl shadow-sm shadow-black/30 p-4 sm:p-5 md:p-6 h-full max-w-[18rem] w-full backdrop-blur-md bg-transparent hover:border-gray-600/60 transition-all duration-300 overflow-hidden relative"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
                   <div className="relative z-10">
                     <div className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-3 flex items-center gap-2">
                       <Linkedin size={14} className="group-hover:text-purple-400 transition-colors" />
@@ -242,9 +247,9 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                   href="https://github.com/Sidd1374"
                   target="_blank"
                   rel="noreferrer"
-                  className="group border border-gray-700/40 rounded-2xl p-6 backdrop-blur-md bg-transparent hover:border-gray-600/60 transition-all duration-300 overflow-hidden relative"
+                  className="group border border-gray-700/40 rounded-3xl shadow-sm shadow-black/30 p-4 sm:p-5 md:p-6 h-full max-w-[18rem] w-full backdrop-blur-md bg-transparent hover:border-gray-600/60 transition-all duration-300 overflow-hidden relative"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
                   <div className="relative z-10">
                     <div className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-3 flex items-center gap-2">
                       <Github size={14} className="group-hover:text-cyan-400 transition-colors" />
@@ -263,9 +268,9 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                 {/* Response Stats Card */}
                 <motion.div
                   whileHover={{ y: -3 }}
-                  className="group border border-gray-700/40 rounded-2xl p-6 backdrop-blur-md bg-transparent hover:border-gray-600/60 transition-all duration-300 overflow-hidden relative"
+                  className="group border border-gray-700/40 rounded-3xl shadow-sm shadow-black/30 p-4 sm:p-5 md:p-6 h-full max-w-[18rem] w-full backdrop-blur-md bg-transparent hover:border-gray-600/60 transition-all duration-300 overflow-hidden relative"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
                   <div className="relative z-10">
                     <div className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-4 flex items-center gap-2">
                       ⚡ RESPONSE STATS
@@ -287,9 +292,9 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                 {/* Office Hours Card */}
                 <motion.div
                   whileHover={{ y: -3 }}
-                  className="group border border-gray-700/40 rounded-2xl p-6 backdrop-blur-md bg-transparent hover:border-gray-600/60 transition-all duration-300 overflow-hidden relative"
+                  className="group border border-gray-700/40 rounded-3xl shadow-sm shadow-black/30 p-4 sm:p-5 md:p-6 h-full max-w-[18rem] w-full backdrop-blur-md bg-transparent hover:border-gray-600/60 transition-all duration-300 overflow-hidden relative"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
                   <div className="relative z-10">
                     <div className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-4">📅 OFFICE HOURS</div>
                     <div className="space-y-3 text-sm">
@@ -313,20 +318,37 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
             </motion.div>
           </motion.div>
 
+          {/* Divider Column */}
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="hidden lg:flex lg:col-span-1 items-center justify-center"
+            aria-hidden
+          >
+            <motion.div
+              className="w-[2px] h-full rounded-full"
+              style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.28), rgba(255,255,255,0.08))' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0.6, 1, 0.6] }}
+              transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+            />
+          </motion.div>
+
           {/* RIGHT SIDE - Form */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col lg:col-span-2 min-h-[120vh] lg:min-h-screen"
+            className="flex flex-col lg:col-span-2 min-h-[120vh] lg:min-h-screen py-8 lg:py-12"
           >
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="mb-8"
+              className="mb-12 flex flex-col items-center text-center"
             >
               <div className="text-xs uppercase tracking-widest text-gray-400 font-semibold">PROJECT INTAKE</div>
               <h2 className="text-3xl font-bold mt-8">Tell me about your build</h2>
-              <p className="text-gray-400 mt-2">Share context about timelines, stack, or constraints — I read everything.</p>
+              <p className="text-gray-400 mt-3 max-w-[30rem]">Share context about timelines, stack, or constraints — I read everything.</p>
             </motion.div>
 
             <form
@@ -334,7 +356,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                 e.preventDefault();
                 sendMail();
               }}
-              className="space-y-5"
+              className="space-y-8"
             >
               {/* Name & Email Row */}
               <div className="grid grid-cols-2 gap-4">

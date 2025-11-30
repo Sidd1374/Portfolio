@@ -1362,7 +1362,7 @@ export default function Portfolio() {
               <a href="https://github.com/Sidd1374" target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-600 transition-all flex items-center gap-2 text-sm font-medium group">
                 <Github size={16} className="group-hover:text-white" /> GitHub
               </a>
-              <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className={`px-4 py-2 rounded-lg bg-gray-900/80 border ${theme.borderMedium} ${theme.accent} ${theme.hoverBg} transition-all flex items-center gap-2 text-sm font-medium`}>
+              <a href={RESUME_PATH} download="siddharth_resume.pdf" className={`px-4 py-2 rounded-lg bg-gray-900/80 border ${theme.borderMedium} ${theme.accent} ${theme.hoverBg} transition-all flex items-center gap-2 text-sm font-medium`}>
                 <Download size={16} /> CV
               </a>
             </motion.div>
