@@ -604,6 +604,75 @@ const FULL_DATA = [
 
 ];
 
+// --- COMPONENT: TypeWriter Animation ---
+const TypeWriter = ({ roles }) => {
+  const [displayedRole, setDisplayedRole] = useState('');
+  const [currentRoleIdx, setCurrentRoleIdx] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [charIdx, setCharIdx] = useState(0);
+
+  // Map roles to themes
+  const roleThemes = {
+    'Flutter Developer': { gradient: 'from-cyan-400 via-blue-500 to-cyan-500', strokeColor: '#06b6d4', fillColor: '#22d3ee' },
+    'Operations Manager': { gradient: 'from-orange-400 via-red-500 to-orange-500', strokeColor: '#fb923c', fillColor: '#fb7185' },
+    'Creative Director': { gradient: 'from-purple-400 via-pink-500 to-purple-500', strokeColor: '#c084fc', fillColor: '#ec4899' }
+  };
+
+  const currentRole = roles[currentRoleIdx];
+  const themeConfig = roleThemes[currentRole] || roleThemes['Flutter Developer'];
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (charIdx < currentRole.length) {
+          setDisplayedRole(currentRole.substring(0, charIdx + 1));
+          setCharIdx(charIdx + 1);
+        } else {
+          // Finished typing, wait 2s then start deleting
+          setTimeout(() => {
+            setIsDeleting(true);
+          }, 2000);
+        }
+      } else {
+        // Deleting
+        if (charIdx > 0) {
+          setDisplayedRole(currentRole.substring(0, charIdx - 1));
+          setCharIdx(charIdx - 1);
+        } else {
+          // Finished deleting, move to next role
+          setIsDeleting(false);
+          setCurrentRoleIdx((prev) => (prev + 1) % roles.length);
+        }
+      }
+    }, isDeleting ? 50 : 80);
+
+    return () => clearTimeout(timer);
+  }, [charIdx, isDeleting, currentRoleIdx, roles]);
+
+  return (
+    <span 
+      className={`font-['Space_Mono',monospace] font-black text-2xl md:text-3xl lg:text-4xl relative transition-all duration-500 inline-block`}
+      style={{
+        backgroundImage: `linear-gradient(to right, ${themeConfig.fillColor}, ${themeConfig.fillColor})`,
+        backgroundClip: 'text',
+        WebkitBackgroundClip: 'text',
+        color: 'transparent',
+        textStroke: `1.5px ${themeConfig.strokeColor}`,
+        WebkitTextStroke: `1.5px ${themeConfig.strokeColor}`,
+        paintOrder: 'stroke fill'
+      }}
+    >
+      {displayedRole}
+      <motion.span
+        animate={{ opacity: [1, 0] }}
+        transition={{ repeat: Infinity, duration: 0.8 }}
+        className={`ml-1 inline-block w-1 h-10 md:h-12 lg:h-14 bg-gradient-to-r ${themeConfig.gradient}`}
+      />
+    </span>
+  );
+};
+
 // --- COMPONENT: Persona Summary Card ---
 const PersonaSummary = ({ theme, persona }) => {
   const summaryData = PERSONA_SUMMARIES[persona];
@@ -1128,12 +1197,12 @@ const TimelineNode = ({ data, index, theme, onClick }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative mb-20 last:mb-0 w-full flex group cursor-pointer"
+      className="relative mb-20 last:mb-0 w-full flex group cursor-pointer items-center"
       onClick={() => onClick(data)}
     >
       {/* The Dot / Node */}
       <div
-        className={`absolute left-4 md:left-1/2 top-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black border-2 flex items-center justify-center z-10 md:-translate-x-1/2 transition-all duration-500 ${isInView ? `${theme.borderSolid} scale-110` : 'border-gray-700 scale-100'}`}
+        className={`absolute left-4 md:left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black border-2 flex items-center justify-center z-10 md:-translate-x-1/2 transition-all duration-500 ${isInView ? `${theme.borderSolid} scale-110` : 'border-gray-700 scale-100'}`}
         style={isInView ? { boxShadow: theme.glowShadow } : undefined}
       >
         <div className={`transition-colors duration-300 ${isInView ? theme.accent : 'text-gray-600'}`}>
@@ -1146,8 +1215,8 @@ const TimelineNode = ({ data, index, theme, onClick }) => {
       </div>
 
       {/* Content Card */}
-      <div className={`flex w-full ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} pl-16 md:pl-0`}>
-        <div className={`w-full md:w-[45%] ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}>
+      <div className={`flex w-full items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} pl-16 md:pl-0`}>
+        <div className={`w-full md:w-[45%] flex items-center ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}>
           <div 
             className={`p-6 rounded-2xl border transition-all duration-500 ${isInView ? `bg-gray-900/80 ${theme.borderMedium} shadow-[0_0_30px_rgba(0,0,0,0.3)] transform -translate-y-1` : 'bg-gray-900/30 border-gray-800'} hover:bg-gray-800/80`}>
             <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold mb-3 ${theme.badgeBg} ${theme.accent} border ${theme.borderSoft}`}>{data.year}</span>
@@ -1302,7 +1371,7 @@ export default function Portfolio() {
 
       {/* Hero Section */}
       {/* Available badge placed between nav and hero */}
-      <div className={`fixed left-1/2 -translate-x-1/2 top-12 md:top-16 z-50 transition-all duration-300 ${scrolled ? 'opacity-0 -translate-y-6 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
+      <div className={`fixed left-1/2 -translate-x-1/2 top-12 md:top-16 z-50 transition-all duration-300 px-2 sm:px-3 md:px-4 ${scrolled ? 'opacity-0 -translate-y-6 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
         <a
           href="#contact"
           onClick={(e) => { e.preventDefault(); const el = document.getElementById('contact'); if (el) el.scrollIntoView({ behavior: 'smooth' }); else window.location.hash = '#contact'; }}
@@ -1310,7 +1379,7 @@ export default function Portfolio() {
           tabIndex={0}
           role="button"
           aria-label="Jump to contact"
-          className={`inline-block px-4 py-2 rounded-full text-sm font-medium bg-gray-900/90 border border-gray-700 text-gray-200 backdrop-blur-sm shadow-lg hover:bg-gray-800 transition-colors ${!scrolled ? 'animate-pulse' : ''}`}
+          className={`inline-flex items-center justify-center px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full text-xs sm:text-sm md:text-base font-medium bg-gray-900/90 border border-gray-700 text-gray-200 backdrop-blur-sm shadow-lg hover:bg-gray-800 transition-colors whitespace-nowrap ${!scrolled ? 'animate-pulse' : ''}`}
           style={{ zIndex: 9999 }}
         >
           Available for New Opportunities
@@ -1343,7 +1412,10 @@ export default function Portfolio() {
 
             <p className="text-lg md:text-xl text-gray-400 mb-8 leading-relaxed max-w-xl mx-auto md:mx-0">
               Hi, I'm <span className="text-white font-semibold">Siddharth Sharma</span>. 
-              Depending on who you ask, I'm a Flutter Developer, an Operations Manager, or a Creative Director.
+              <br />
+              Depending on who you ask, I'm a 
+               <br />
+              <TypeWriter roles={['Flutter Developer', 'Operations Manager', 'Creative Director']} />
             </p>
 
             {/* Social & Contact Buttons */}
@@ -1498,7 +1570,7 @@ export default function Portfolio() {
            <p className="text-gray-400 mb-8">
             I am currently looking for full-time opportunities and challenging projects.
           </p>
-          <button onClick={() => { setContactOpen(true); if (window.location.hash !== '#contact-page') window.location.hash = '#contact-page'; }} className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r ${theme.gradientDeep} ${theme.hoverFrom} ${theme.hoverTo} rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-lg ${theme.shadowSoft}`}>
+          <button onClick={() => { setContactOpen(true); if (window.location.hash !== '#contact-page') window.location.hash = '#contact-page'; window.scrollTo(0, 0); }} className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r ${theme.gradientDeep} ${theme.hoverFrom} ${theme.hoverTo} rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-lg ${theme.shadowSoft}`}>
             Start a Conversation <ChevronRight size={20} />
           </button>
         </div>
