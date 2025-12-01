@@ -429,7 +429,7 @@ const FULL_DATA = [
       challenge: "Coordinating schedules and communications across multiple sub-teams during a busy semester.",
       solution: "Introduced structured documentation, weekly syncs, and a shared calendar which reduced conflicts and improved on-time deliveries.",
       tech: ["Event Coordination", "Slack", "Google Workspace"],
-    //  images: ["msc_secretary1.jpeg"]
+      images: ["kk2.jpeg", "kk1.jpeg"]
     }
   },
   {
@@ -603,75 +603,6 @@ const FULL_DATA = [
   }
 
 ];
-
-// --- COMPONENT: TypeWriter Animation ---
-const TypeWriter = ({ roles }) => {
-  const [displayedRole, setDisplayedRole] = useState('');
-  const [currentRoleIdx, setCurrentRoleIdx] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [charIdx, setCharIdx] = useState(0);
-
-  // Map roles to themes
-  const roleThemes = {
-    'Flutter Developer': { gradient: 'from-cyan-400 via-blue-500 to-cyan-500', strokeColor: '#06b6d4', fillColor: '#22d3ee' },
-    'Operations Manager': { gradient: 'from-orange-400 via-red-500 to-orange-500', strokeColor: '#fb923c', fillColor: '#fb7185' },
-    'Creative Director': { gradient: 'from-purple-400 via-pink-500 to-purple-500', strokeColor: '#c084fc', fillColor: '#ec4899' }
-  };
-
-  const currentRole = roles[currentRoleIdx];
-  const themeConfig = roleThemes[currentRole] || roleThemes['Flutter Developer'];
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!isDeleting) {
-        // Typing
-        if (charIdx < currentRole.length) {
-          setDisplayedRole(currentRole.substring(0, charIdx + 1));
-          setCharIdx(charIdx + 1);
-        } else {
-          // Finished typing, wait 2s then start deleting
-          setTimeout(() => {
-            setIsDeleting(true);
-          }, 2000);
-        }
-      } else {
-        // Deleting
-        if (charIdx > 0) {
-          setDisplayedRole(currentRole.substring(0, charIdx - 1));
-          setCharIdx(charIdx - 1);
-        } else {
-          // Finished deleting, move to next role
-          setIsDeleting(false);
-          setCurrentRoleIdx((prev) => (prev + 1) % roles.length);
-        }
-      }
-    }, isDeleting ? 50 : 80);
-
-    return () => clearTimeout(timer);
-  }, [charIdx, isDeleting, currentRoleIdx, roles]);
-
-  return (
-    <span 
-      className={`font-['Space_Mono',monospace] font-black text-2xl md:text-3xl lg:text-4xl relative transition-all duration-500 inline-block`}
-      style={{
-        backgroundImage: `linear-gradient(to right, ${themeConfig.fillColor}, ${themeConfig.fillColor})`,
-        backgroundClip: 'text',
-        WebkitBackgroundClip: 'text',
-        color: 'transparent',
-        textStroke: `1.5px ${themeConfig.strokeColor}`,
-        WebkitTextStroke: `1.5px ${themeConfig.strokeColor}`,
-        paintOrder: 'stroke fill'
-      }}
-    >
-      {displayedRole}
-      <motion.span
-        animate={{ opacity: [1, 0] }}
-        transition={{ repeat: Infinity, duration: 0.8 }}
-        className={`ml-1 inline-block w-1 h-10 md:h-12 lg:h-14 bg-gradient-to-r ${themeConfig.gradient}`}
-      />
-    </span>
-  );
-};
 
 // --- COMPONENT: Persona Summary Card ---
 const PersonaSummary = ({ theme, persona }) => {
@@ -1386,13 +1317,13 @@ export default function Portfolio() {
         </a>
       </div>
 
-      <header className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-20 overflow-hidden">
+      <header className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 md:pt-28 overflow-hidden">
         <div className={`absolute inset-0 bg-gradient-to-b ${bgGradientClass} opacity-40 transition-colors duration-500`} />
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
 
-        <div className="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-2 items-center gap-10">
+        <div className="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-5 items-center gap-10">
           {/* Content Side (Text) */}
-          <div className="text-center md:text-left order-2 md:order-1">
+          <div className="text-center md:text-left order-2 md:order-1 md:col-span-3">
             <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -1410,12 +1341,12 @@ export default function Portfolio() {
               I build <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText} transition-all duration-500`}>journeys.</span>
             </motion.h1>
 
-            <p className="text-lg md:text-xl text-gray-400 mb-8 leading-relaxed max-w-xl mx-auto md:mx-0">
+            <p className="text-lg md:text-xl text-gray-400 mb-8 leading-relaxed max-w-xl md:max-w-3xl lg:max-w-4xl mx-auto md:mx-0">
               Hi, I'm <span className="text-white font-semibold">Siddharth Sharma</span>. 
               <br />
-              Depending on who you ask, I'm a 
-               <br />
-              <TypeWriter roles={['Flutter Developer', 'Operations Manager', 'Creative Director']} />
+              Depending on who you ask, 
+              <br />
+              I'm a Flutter Developer, Operations Manager, or Creative Director.
             </p>
 
             {/* Social & Contact Buttons */}
@@ -1434,15 +1365,26 @@ export default function Portfolio() {
               <a href="https://github.com/Sidd1374" target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-600 transition-all flex items-center gap-2 text-sm font-medium group">
                 <Github size={16} className="group-hover:text-white" /> GitHub
               </a>
-              <a href={RESUME_PATH} download="siddharth_resume.pdf" className={`px-4 py-2 rounded-lg bg-gray-900/80 border ${theme.borderMedium} ${theme.accent} ${theme.hoverBg} transition-all flex items-center gap-2 text-sm font-medium`}>
+              <button 
+                onClick={() => {
+                  window.open(RESUME_PATH, '_blank');
+                  const link = document.createElement('a');
+                  link.href = RESUME_PATH;
+                  link.download = 'siddharth_resume.pdf';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }}
+                className={`px-4 py-2 rounded-lg bg-gray-900/80 border ${theme.borderMedium} ${theme.accent} ${theme.hoverBg} transition-all flex items-center gap-2 text-sm font-medium cursor-pointer hover:scale-105`}
+              >
                 <Download size={16} /> CV
-              </a>
+              </button>
             </motion.div>
 
           </div>
 
           {/* Image Side - Center on mobile, Right on Desktop */}
-          <div className="flex justify-center md:justify-mid order-1 md:order-2 mt-8 md:mt-0">
+          <div className="flex justify-center md:justify-start order-1 md:order-2 mt-8 md:mt-0">
             <div className="relative">
               {/* Animated pulsing background using Framer Motion and persona RGB */}
               <motion.div

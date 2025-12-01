@@ -140,7 +140,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
       ))}
 
       {/* Page Content */}
-      <div className="relative z-10 min-h-screen flex items-center justify-start px-3 sm:px-4 md:px-6 lg:px-6 py-8 sm:py-12 md:py-16 lg:py-20">
+      <div className="relative z-10 min-h-screen flex items-center justify-start px-3 sm:px-4 md:px-6 lg:px-6 pt-20 sm:pt-12 md:pt-16 lg:pt-20 pb-8 sm:pb-12 md:pb-16 lg:pb-20">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -200,8 +200,8 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                       <Phone size={12} className="md:size-[14px] lg:size-[16px] group-hover:text-cyan-400 transition-colors" />
                       PHONE
                     </div>
-                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white break-words">+91 8988568859</p>
-                    <p className="text-xs sm:text-xs md:text-sm lg:text-base text-gray-400 mt-1 sm:mt-1 md:mt-2 lg:mt-2">Available 9am – 8pm IST</p>
+                    <p className="text-base sm:text-xl md:text-xl lg:text-2xl font-bold text-white break-words">+91 8988568859</p>
+                    <p className="text-xs sm:text-sm md:text-sm lg:text-base text-gray-400 mt-1 sm:mt-1 md:mt-2 lg:mt-2">Available 9am – 8pm IST</p>
                   </div>
                 </motion.div>
 
@@ -215,10 +215,10 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                       <Mail size={12} className="md:size-[14px] lg:size-[16px] group-hover:text-orange-400 transition-colors" />
                       EMAIL
                     </div>
-                    <a href="mailto:sidd13704@gmail.com" className="text-xs sm:text-sm md:text-base lg:text-xl font-bold text-white hover:opacity-80 transition-opacity break-words">
+                    <a href="mailto:sidd13704@gmail.com" className="text-xs sm:text-base md:text-base lg:text-xl font-bold text-white hover:opacity-80 transition-opacity break-words">
                       sidd13704@gmail.com
                     </a>
-                    <p className="text-xs sm:text-xs md:text-sm lg:text-base text-gray-400 mt-1 sm:mt-1 md:mt-2 lg:mt-2">Replies within 12 hours</p>
+                    <p className="text-xs sm:text-sm md:text-sm lg:text-base text-gray-400 mt-1 sm:mt-1 md:mt-2 lg:mt-2">Replies within 12 hours</p>
                   </div>
                 </motion.div>
               </div>
@@ -239,7 +239,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                       <Linkedin size={12} className="md:size-[14px] lg:size-[16px] group-hover:text-purple-400 transition-colors" />
                       LINKEDIN
                     </div>
-                    <p className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-white hover:text-purple-300 transition-colors break-words">linkedin.com/in/siddharth1374</p>
+                    <p className="text-xs sm:text-base md:text-base lg:text-lg font-semibold text-white hover:text-purple-300 transition-colors break-words">linkedin.com/in/siddharth1374</p>
                   </div>
                 </a>
 
@@ -255,7 +255,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                       <Github size={12} className="md:size-[14px] lg:size-[16px] group-hover:text-cyan-400 transition-colors" />
                       GITHUB
                     </div>
-                    <p className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-white hover:text-cyan-300 transition-colors break-words">github.com/sidd1374</p>
+                    <p className="text-xs sm:text-base md:text-base lg:text-lg font-semibold text-white hover:text-cyan-300 transition-colors break-words">github.com/sidd1374</p>
                   </div>
                 </a>
               </motion.div>
@@ -275,8 +275,8 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                     <div className="text-xs sm:text-xs md:text-xs lg:text-sm uppercase tracking-widest text-gray-400 font-semibold mb-2 sm:mb-2 md:mb-3 lg:mb-4 flex items-center gap-2">
                       ⚡ RESPONSE STATS
                     </div>
-                    <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1 sm:mb-1 md:mb-2 lg:mb-2">~6 hrs</p>
-                    <p className="text-xs sm:text-xs md:text-sm lg:text-base text-gray-400 mb-2 sm:mb-2 md:mb-4 lg:mb-4 break-words">Avg. reply window for new briefs</p>
+                    <p className="text-xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-white mb-1 sm:mb-1 md:mb-2 lg:mb-2">~6 hrs</p>
+                    <p className="text-xs sm:text-sm md:text-sm lg:text-base text-gray-400 mb-2 sm:mb-2 md:mb-4 lg:mb-4 break-words">Avg. reply window for new briefs</p>
                     <div className="w-full bg-gray-800 rounded-full h-1 sm:h-1.5 md:h-2 lg:h-2 overflow-hidden">
                       <motion.div
                         className="h-full bg-gradient-to-r from-cyan-400 via-orange-400 to-purple-400 rounded-full"
@@ -297,7 +297,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
                   <div className="relative z-10">
                     <div className="text-xs sm:text-xs md:text-xs lg:text-sm uppercase tracking-widest text-gray-400 font-semibold mb-3 sm:mb-3 md:mb-4 lg:mb-4">📅 OFFICE HOURS</div>
-                    <div className="space-y-2 sm:space-y-2 md:space-y-3 lg:space-y-3 text-xs sm:text-xs md:text-sm lg:text-base">
+                    <div className="space-y-2 sm:space-y-2 md:space-y-3 lg:space-y-3 text-xs sm:text-sm md:text-sm lg:text-base">
                       <div className="flex justify-between gap-2">
                         <span className="text-gray-300">Mon – Fri</span>
                         <span className="font-semibold bg-gradient-to-r from-cyan-400 via-orange-400 to-purple-400 bg-clip-text text-transparent group-hover:text-transparent transition-colors text-right">09:00 – 22:00 IST</span>
