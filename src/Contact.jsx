@@ -215,7 +215,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                       <Mail size={12} className="md:size-[14px] lg:size-[16px] group-hover:text-orange-400 transition-colors" />
                       EMAIL
                     </div>
-                    <a href="mailto:sidd13704@gmail.com" className="text-xs sm:text-base md:text-base lg:text-xl font-bold text-white hover:opacity-80 transition-opacity break-words">
+                    <a href="mailto:sidd13704@gmail.com" className="text-base sm:text-xl md:text-xl lg:text-2xl font-bold text-white hover:opacity-80 transition-opacity break-words">
                       sidd13704@gmail.com
                     </a>
                     <p className="text-xs sm:text-sm md:text-sm lg:text-base text-gray-400 mt-1 sm:mt-1 md:mt-2 lg:mt-2">Replies within 12 hours</p>
@@ -239,7 +239,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                       <Linkedin size={12} className="md:size-[14px] lg:size-[16px] group-hover:text-purple-400 transition-colors" />
                       LINKEDIN
                     </div>
-                    <p className="text-xs sm:text-base md:text-base lg:text-lg font-semibold text-white hover:text-purple-300 transition-colors break-words">linkedin.com/in/siddharth1374</p>
+                    <p className="text-base sm:text-xl md:text-xl lg:text-2xl font-semibold text-white hover:text-purple-300 transition-colors break-words">linkedin.com/in/siddharth1374</p>
                   </div>
                 </a>
 
@@ -255,7 +255,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                       <Github size={12} className="md:size-[14px] lg:size-[16px] group-hover:text-cyan-400 transition-colors" />
                       GITHUB
                     </div>
-                    <p className="text-xs sm:text-base md:text-base lg:text-lg font-semibold text-white hover:text-cyan-300 transition-colors break-words">github.com/sidd1374</p>
+                    <p className="text-base sm:text-xl md:text-xl lg:text-2xl font-semibold text-white hover:text-cyan-300 transition-colors break-words">github.com/sidd1374</p>
                   </div>
                 </a>
               </motion.div>
@@ -297,7 +297,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
                   <div className="relative z-10">
                     <div className="text-xs sm:text-xs md:text-xs lg:text-sm uppercase tracking-widest text-gray-400 font-semibold mb-3 sm:mb-3 md:mb-4 lg:mb-4">📅 OFFICE HOURS</div>
-                    <div className="space-y-2 sm:space-y-2 md:space-y-3 lg:space-y-3 text-xs sm:text-sm md:text-sm lg:text-base">
+                    <div className="space-y-2 sm:space-y-2 md:space-y-3 lg:space-y-3 text-base sm:text-xl md:text-xl lg:text-2xl">
                       <div className="flex justify-between gap-2">
                         <span className="text-gray-300">Mon – Fri</span>
                         <span className="font-semibold bg-gradient-to-r from-cyan-400 via-orange-400 to-purple-400 bg-clip-text text-transparent group-hover:text-transparent transition-colors text-right">09:00 – 22:00 IST</span>
