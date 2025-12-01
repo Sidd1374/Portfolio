@@ -29,6 +29,7 @@ import {
   Star,
   FileText,
   Download,
+  ChevronUp,
   Coffee,
   Brain,
   Megaphone,
@@ -1181,6 +1182,7 @@ export default function Portfolio() {
   const [galleryImages, setGalleryImages] = useState([]);
   const [contactOpen, setContactOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showTop, setShowTop] = useState(false);
 
   // Filter Data
   const filteredData = FULL_DATA.filter(item => item.personas.includes(persona));
@@ -1215,8 +1217,14 @@ export default function Portfolio() {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 50);
+      setShowTop(y > 300);
+    };
     window.addEventListener('scroll', handleScroll);
+    // run once to set initial state
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -1521,6 +1529,15 @@ export default function Portfolio() {
       <footer className="py-12 text-center text-gray-600 text-sm border-t border-gray-900 bg-black">
         <p>© 2025 Siddharth Sharma. Crafted with React & Framer Motion.</p>
       </footer>
+
+      {/* Back to Top Button */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        aria-label="Back to top"
+        className={`fixed bottom-4 right-4 z-50 p-3 sm:p-4 rounded-full bg-gray-900/80 border border-gray-700 text-gray-200 shadow-lg transition-all transform ${showTop ? 'opacity-100 pointer-events-auto scale-100' : 'opacity-0 pointer-events-none scale-90'} sm:bottom-6 sm:right-6`}
+      >
+        <ChevronUp size={20} />
+      </button>
 
       {/* Modals */}
       <Modal isOpen={!!selectedNode} onClose={() => setSelectedNode(null)} data={selectedNode} theme={theme} />

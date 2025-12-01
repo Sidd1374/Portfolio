@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Mail, Phone, Linkedin, Github, Instagram, Send, Sparkles } from 'lucide-react';
+import { ArrowLeft, Mail, Phone, Linkedin, Github, Instagram, Send, Sparkles, ChevronUp } from 'lucide-react';
 
 export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
   const [name, setName] = useState('');
@@ -9,6 +9,34 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
   const [context, setContext] = useState('');
   const [focusedField, setFocusedField] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showTop, setShowTop] = useState(false);
+  const [showBack, setShowBack] = useState(true);
+  const lastScrollY = useRef(typeof window !== 'undefined' ? window.scrollY : 0);
+
+  useEffect(() => {
+    const handler = () => setShowTop(window.scrollY > 300);
+    window.addEventListener('scroll', handler);
+    handler();
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+
+  // Hide top back button when scrolling down, show when scrolling up
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - lastScrollY.current;
+      if (delta > 10) {
+        // scrolling down
+        setShowBack(false);
+      } else if (delta < -10) {
+        // scrolling up
+        setShowBack(true);
+      }
+      lastScrollY.current = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const sendMail = () => {
     setIsSubmitting(true);
@@ -105,10 +133,11 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
       {/* Back Button */}
       <motion.div
         className="fixed top-6 left-6 z-50"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.4 }}
-        whileHover={{ x: -5 }}
+        initial={{ opacity: 1, x: 0 }}
+        animate={showBack ? { opacity: 1, x: 0 } : { opacity: 0, x: -24 }}
+        transition={{ duration: 0.25 }}
+        whileHover={showBack ? { x: -5 } : undefined}
+        style={{ pointerEvents: showBack ? 'auto' : 'none' }}
       >
         <button
           onClick={onBack}
@@ -215,7 +244,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                       <Mail size={12} className="md:size-[14px] lg:size-[16px] group-hover:text-orange-400 transition-colors" />
                       EMAIL
                     </div>
-                    <a href="mailto:sidd13704@gmail.com" className="text-base sm:text-xl md:text-xl lg:text-2xl font-bold text-white hover:opacity-80 transition-opacity break-words">
+                    <a href="mailto:sidd13704@gmail.com" className="text-base sm:text-xl md:text-xl lg:text-xl font-bold text-white hover:opacity-80 transition-opacity break-words">
                       sidd13704@gmail.com
                     </a>
                     <p className="text-xs sm:text-sm md:text-sm lg:text-base text-gray-400 mt-1 sm:mt-1 md:mt-2 lg:mt-2">Replies within 12 hours</p>
@@ -239,7 +268,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                       <Linkedin size={12} className="md:size-[14px] lg:size-[16px] group-hover:text-purple-400 transition-colors" />
                       LINKEDIN
                     </div>
-                    <p className="text-base sm:text-xl md:text-xl lg:text-2xl font-semibold text-white hover:text-purple-300 transition-colors break-words">linkedin.com/in/siddharth1374</p>
+                    <p className="text-base sm:text-xl md:text-xl lg:text-xl font-semibold text-white hover:text-purple-300 transition-colors break-words">linkedin.com/in/siddharthsharma1374</p>
                   </div>
                 </a>
 
@@ -255,7 +284,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                       <Github size={12} className="md:size-[14px] lg:size-[16px] group-hover:text-cyan-400 transition-colors" />
                       GITHUB
                     </div>
-                    <p className="text-base sm:text-xl md:text-xl lg:text-2xl font-semibold text-white hover:text-cyan-300 transition-colors break-words">github.com/sidd1374</p>
+                    <p className="text-base sm:text-xl md:text-xl lg:text-xl font-semibold text-white hover:text-cyan-300 transition-colors break-words">github.com/sidd1374</p>
                   </div>
                 </a>
               </motion.div>
@@ -297,7 +326,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
                   <div className="relative z-10">
                     <div className="text-xs sm:text-xs md:text-xs lg:text-sm uppercase tracking-widest text-gray-400 font-semibold mb-3 sm:mb-3 md:mb-4 lg:mb-4">📅 OFFICE HOURS</div>
-                    <div className="space-y-2 sm:space-y-2 md:space-y-3 lg:space-y-3 text-base sm:text-xl md:text-xl lg:text-2xl">
+                    <div className="space-y-2 sm:space-y-2 md:space-y-3 lg:space-y-3 text-base sm:text-xl md:text-xl lg:text-xl">
                       <div className="flex justify-between gap-2">
                         <span className="text-gray-300">Mon – Fri</span>
                         <span className="font-semibold bg-gradient-to-r from-cyan-400 via-orange-400 to-purple-400 bg-clip-text text-transparent group-hover:text-transparent transition-colors text-right">09:00 – 22:00 IST</span>
@@ -477,6 +506,16 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Back to Top Button */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        aria-label="Back to top"
+        className={`fixed bottom-4 right-4 z-50 p-3 rounded-full bg-gray-900/80 border border-gray-700 text-gray-200 shadow-lg transition-all transform ${showTop ? 'opacity-100 pointer-events-auto scale-100' : 'opacity-0 pointer-events-none scale-90'} sm:bottom-6 sm:right-6 sm:p-4`}
+      >
+        <ChevronUp size={18} />
+      </button>
+
     </div>
   );
 }
