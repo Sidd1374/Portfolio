@@ -1,8 +1,19 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 const SkillsModal = memo(({ isOpen, onClose, category, skills, theme }) => {
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [isOpen]);
+
     if (!isOpen || !skills) return null;
 
     return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, Suspense, lazy, memo } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, AnimatePresence, useInView } from 'framer-motion';
 import {
   Code,
   Users,
@@ -31,12 +31,14 @@ import CharacterStats from './components/Portfolio/CharacterStats';
 // Lazy Components for better performance
 const SkillsSection = lazy(() => import('./components/Portfolio/SkillsSection'));
 const AchievementsSection = lazy(() => import('./components/Portfolio/AchievementsSection'));
-const EventHighlights = lazy(() => import('./components/Portfolio/EventHighlights'));
 const ProjectsSection = lazy(() => import('./components/Portfolio/ProjectsSection'));
 const CertificatesSection = lazy(() => import('./components/Portfolio/CertificatesSection'));
+const LogoMarquee = lazy(() => import('./components/Portfolio/LogoMarquee'));
+const EventGallery = lazy(() => import('./components/Portfolio/EventGallery'));
 const Modal = lazy(() => import('./components/Portfolio/Modal'));
 const SkillsModal = lazy(() => import('./components/Portfolio/SkillsModal'));
 const CertificateDetailModal = lazy(() => import('./components/Portfolio/CertificateDetailModal'));
+const ProjectDetailModal = lazy(() => import('./components/Portfolio/ProjectDetailModal'));
 const AllItemsModal = lazy(() => import('./components/Portfolio/AllItemsModal'));
 const GalleryModal = lazy(() => import('./components/Portfolio/GalleryModal'));
 
@@ -60,6 +62,9 @@ export default function Portfolio() {
 
   // New states for Projects & Certificates
   const [selectedCert, setSelectedCert] = useState(null);
+  const mainSwitcherRef = useRef(null);
+  const isSwitcherInView = useInView(mainSwitcherRef, { margin: "-80px 0px 0px 0px" });
+  const [selectedProject, setSelectedProject] = useState(null);
   const [showAllType, setShowAllType] = useState(null); // 'projects' or 'certificates'
 
   // Filter Data
@@ -158,21 +163,79 @@ export default function Portfolio() {
       />
 
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-40 transition-all duration-300 ${scrolled ? 'bg-black/80 backdrop-blur-md border-b border-gray-800' : 'bg-transparent'}`}>
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="font-bold text-xl tracking-tighter">
-            Siddharth<span className={accentColorClass}>.</span>
+      <nav className={`fixed top-0 w-full z-40 transition-all duration-500 ${scrolled ? 'bg-black/80 backdrop-blur-2xl border-b border-white/5 py-2' : 'bg-transparent py-4'}`}>
+        {/* Shimmer Line */}
+        {scrolled && (
+          <motion.div
+            className={`absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-${theme.rgb === '34, 211, 238' ? 'cyan-500' : theme.rgb === '251, 146, 60' ? 'orange-500' : 'purple-500'} to-transparent opacity-50`}
+            animate={{ x: ['-100%', '100%'] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+          />
+        )}
+
+        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between relative h-12 md:h-14">
+          {/* Logo - Left */}
+          <div className="flex items-center">
+            <div className="font-extrabold text-lg md:text-xl tracking-tighter group cursor-default whitespace-nowrap">
+              <span className="text-white">iam</span>
+              <span className={accentColorClass}>Sidd</span>
+              <span className="text-gray-500">.Tech</span>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <a href="https://instagram.com/_ig__skull_" target="_blank" rel="noreferrer" aria-label="Instagram" className="p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 transition-colors">
+
+          {/* Persona Switcher - Center (Absolute) */}
+          <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center">
+            <AnimatePresence>
+              {!isSwitcherInView && scrolled && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                  className="bg-white/5 backdrop-blur-md border border-white/10 p-1 rounded-xl flex items-center shadow-2xl"
+                >
+                  {['builder', 'leader', 'creator'].map((p) => (
+                    <button
+                      key={p}
+                      onClick={() => setPersona(p)}
+                      className={`relative px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 flex items-center gap-2 ${persona === p ? 'text-black' : 'text-gray-400 hover:text-white'}`}
+                    >
+                      {persona === p && (
+                        <motion.div
+                          layoutId="nav-persona-bg"
+                          className={`absolute inset-0 rounded-lg bg-gradient-to-r ${persona === 'builder' ? 'from-cyan-400 to-cyan-500' : persona === 'leader' ? 'from-orange-400 to-orange-500' : 'from-purple-400 to-pink-500'} z-0`}
+                        />
+                      )}
+                      <span className="relative z-10 hidden lg:inline capitalize">{p}</span>
+                      <span className="relative z-10 lg:hidden capitalize">{p[0]}</span>
+                      <div className="relative z-10">
+                        {p === 'builder' && <Code size={12} />}
+                        {p === 'leader' && <Users size={12} />}
+                        {p === 'creator' && <Video size={12} />}
+                      </div>
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Socials + Contact - Right */}
+          <div className="flex items-center gap-1 sm:gap-2 flex-nowrap">
+            <a href="https://instagram.com/_ig__skull_" target="_blank" rel="noreferrer" aria-label="Instagram" className="p-1.5 sm:p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-all">
               <Instagram size={18} />
             </a>
-            <a href="https://github.com/Sidd1374" target="_blank" rel="noreferrer" aria-label="GitHub" className="p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 transition-colors">
+            <a href="https://github.com/Sidd1374" target="_blank" rel="noreferrer" aria-label="GitHub" className="p-1.5 sm:p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-all">
               <Github size={18} />
             </a>
-            <a href="https://linkedin.com/in/siddharthsharma1374" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 transition-colors">
+            <a href="https://linkedin.com/in/siddharthsharma1374" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="p-1.5 sm:p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-all">
               <Linkedin size={18} />
             </a>
+            <button
+              onClick={() => { setContactOpen(true); window.location.hash = '#contact-page'; window.scrollTo(0, 0); }}
+              className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r ${theme.gradientDeep} text-white text-xs font-bold hover:scale-105 transition-all shadow-lg ${theme.shadowSoft}`}
+            >
+              <Mail size={14} /> Contact
+            </button>
           </div>
         </div>
       </nav>
@@ -266,7 +329,9 @@ export default function Portfolio() {
               >
                 <img
                   src={PROFILE_IMAGE}
-                  alt="Siddharth Sharma"
+                  alt="Siddharth Sharma - Professional Portfolio"
+                  loading="eager"
+                  fetchpriority="high"
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-500 relative"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-tr ${theme.gradientOverlay} to-transparent pointer-events-none`} />
@@ -276,7 +341,7 @@ export default function Portfolio() {
         </div>
 
         {/* Persona Selector */}
-        <div className="mt-10 flex justify-center">
+        <div ref={mainSwitcherRef} className="mt-10 flex justify-center">
           <div className="inline-flex bg-gray-900/80 backdrop-blur-sm border border-gray-800 p-1 rounded-xl relative">
             {['builder', 'leader', 'creator'].map((p) => (
               <button
@@ -303,6 +368,10 @@ export default function Portfolio() {
       </header>
 
       <CharacterStats theme={theme} persona={persona} />
+
+      <Suspense fallback={null}>
+        <LogoMarquee theme={theme} />
+      </Suspense>
 
       <Suspense fallback={<SectionLoader />}>
         <SkillsSection theme={theme} persona={persona} onSkillClick={(category) => setSelectedSkillCategory(category)} />
@@ -337,9 +406,9 @@ export default function Portfolio() {
 
       <Suspense fallback={<SectionLoader />}>
         <AchievementsSection theme={theme} />
-        <ProjectsSection theme={theme} persona={persona} onShowAll={setShowAllType} />
+        <ProjectsSection theme={theme} persona={persona} onShowAll={setShowAllType} onProjectClick={setSelectedProject} />
         <CertificatesSection theme={theme} persona={persona} onCertificateClick={setSelectedCert} onShowAll={setShowAllType} />
-        <EventHighlights theme={theme} onOpenGallery={openGallery} />
+        <EventGallery theme={theme} />
       </Suspense>
 
       {/* Contact Section */}
@@ -358,8 +427,24 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <footer className="py-12 text-center text-gray-600 text-sm border-t border-gray-900 bg-black">
-        <p>© 2025 Siddharth Sharma. Crafted with React & Framer Motion.</p>
+      <footer className="py-16 relative overflow-hidden text-center bg-black/40 backdrop-blur-md border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center justify-center gap-2 mb-6 opacity-80">
+            <span className="relative flex h-2 w-2">
+              <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${theme?.bgSolid || 'bg-cyan-400'} opacity-75`}></span>
+              <span className={`relative inline-flex rounded-full h-2 w-2 ${theme?.bgSolid || 'bg-cyan-500'}`}></span>
+            </span>
+            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">Systems Operational • Ready for Hire</span>
+          </div>
+
+          <div className="font-black text-2xl tracking-tighter mb-4 grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-700 cursor-default">
+            iam<span className={accentColorClass}>Sidd</span>.Tech
+          </div>
+
+          <p className="text-gray-600 text-[11px] font-medium uppercase tracking-widest">
+            © {new Date().getFullYear()} — Hand-coded with precision
+          </p>
+        </div>
       </footer>
 
       {/* Back to Top */}
@@ -386,12 +471,20 @@ export default function Portfolio() {
           cert={selectedCert}
           theme={theme}
         />
+        <ProjectDetailModal
+          isOpen={!!selectedProject}
+          onClose={() => setSelectedProject(null)}
+          project={selectedProject}
+          theme={theme}
+        />
         <AllItemsModal
           isOpen={!!showAllType}
           onClose={() => setShowAllType(null)}
           type={showAllType}
           persona={persona}
           theme={theme}
+          onCertificateClick={setSelectedCert}
+          onProjectClick={setSelectedProject}
         />
         <GalleryModal isOpen={galleryOpen} onClose={closeGallery} images={galleryImages} category={galleryCategory} theme={theme} />
       </Suspense>

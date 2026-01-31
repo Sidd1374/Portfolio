@@ -28,8 +28,9 @@ import {
     Award
 } from 'lucide-react';
 
-export const PROFILE_IMAGE = `${import.meta.env.BASE_URL}siddharth.jpg`;
-export const RESUME_PATH = `${import.meta.env.BASE_URL}siddharth_resume.pdf`;
+
+export const PROFILE_IMAGE = `${import.meta.env.BASE_URL}media/siddharth.webp`;
+export const RESUME_PATH = `${import.meta.env.BASE_URL}media/siddharth_resume.pdf`;
 
 export const PERSONA_SUMMARIES = {
     builder: [
@@ -210,76 +211,224 @@ export const ACHIEVEMENTS_DATA = [
 export const PROJECTS_DATA = [
     {
         id: 1,
-        title: "Veil - Anonymous Chat",
-        description: "Multi-platform chat app with interest-based matching and multi-level verification.",
-        image: "chat.png",
-        tech: ["Flutter", "Firebase", "FCM"],
-        link: "https://github.com/Sidd1374",
+        order: 1,
+        title: "Veil Chat",
+        description: "An anonymous messaging application focusing on privacy and real-time interaction.",
+        images: [
+            "media/projects/VeilChat/chat.webp",
+            "media/projects/VeilChat/chat2.webp",
+            "media/projects/VeilChat/chat3.webp",
+            "media/projects/VeilChat/chat4.webp",
+            "media/projects/VeilChat/chat5.webp"
+        ],
+        logo: "media/projects/VeilChat/logo-veil.webp",
+        tech: ["Flutter", "Firebase", "Firestore", "Cloudinary", "Cloud Functions"],
+        link: "https://github.com/Sidd1374/Anonymous_Chat_Application",
+        details: {
+            challenge: "Maintaining anonymity while ensuring real-time performance and preventing spam.",
+            solution: "Serverless architecture using Firebase & Cloud Functions for metadata-stripped routing.",
+            features: [
+                "Real-time Anonymous Chat",
+                "Metadata-Stripped Content",
+                "Dynamic ID Generation",
+                "Cloudinary Media Integration",
+                "Increased Speed by 35%"
+            ]
+        },
         personas: ["builder"]
     },
     {
         id: 2,
+        order: 2,
         title: "Care Utility",
-        description: "Production line management app improving operational efficiency by 40%.",
-        image: "careutility1.jpeg",
-        tech: ["Flutter", "Firestore", "Auth"],
-        link: "https://github.com/Sidd1374",
-        personas: ["builder", "leader"]
+        description: "Consolidates essential daily tools into one centralized, user-friendly platform.",
+        images: [
+            "media/projects/CareUtility/careutility1.webp",
+            "media/projects/CareUtility/careutility2.webp",
+            "media/projects/CareUtility/careutility3.webp",
+            "media/projects/CareUtility/careutility4.webp",
+            "media/projects/CareUtility/careutility5.webp"
+        ],
+        logo: "media/projects/CareUtility/cu_logo.webp",
+        tech: ["Flutter", "Firebase"],
+        link: "https://github.com/Sidd1374/care_utility",
+        details: {
+            challenge: "Inefficient production line operations due to manual data entry.",
+            solution: "Developed a real-time Firestore-backed app for unified inventory tracking.",
+            features: [
+                "Centralized Utility Services",
+                "Minimalist Material UI",
+                "Firebase Real-time Sync",
+                "Cross-platform Stability",
+                "Boosted efficiency by 40%"
+            ]
+        },
+        personas: ["builder"]
     },
     {
         id: 3,
-        title: "Insight Universe",
-        description: "Podcast series production focusing on student stories and tech trends.",
-        image: "kk3.jpeg",
-        tech: ["Podcast", "Editing", "Strategy"],
-        link: "https://www.youtube.com/@insightuniverse.official/",
-        personas: ["creator", "leader"]
+        order: 3,
+        title: "Lottery Application",
+        description: "Android-based app that presents lottery information and results digitally.",
+        images: [
+            "media/projects/LotteryApp/lottery1.webp",
+            "media/projects/LotteryApp/lottery2.webp"
+        ],
+        logo: "media/projects/LotteryApp/logo_kl.webp",
+        tech: ["Java", "XML", "Firebase"],
+        link: "https://github.com/Sidd1374/Kerela_lottery_app/",
+        details: {
+            challenge: "Providing fast, accurate lottery data on diverse, low-resource hardware.",
+            solution: "Lightweight Android application with optimized Firebase real-time data delivery.",
+            features: [
+                "Centralized Data Display",
+                "Real-time Data Delivery",
+                "Optimized for Low-end Hardware",
+                "Offline-capable Caching",
+                "Reduced load times by 45%"
+            ]
+        },
+        personas: ["builder"]
     },
     {
         id: 4,
-        title: "Lottery App",
-        description: "Secure lottery management system with UPI integration and real-time state.",
-        image: "lottery1.jpg",
-        tech: ["Java", "Firebase", "UPI"],
-        link: "https://github.com/Sidd1374",
-        personas: ["builder"]
+        order: 4,
+        title: "Insight Universe Podcast",
+        description: "Content-driven initiative delivering knowledge and discussions through pro audio/video.",
+        images: [
+            "media/projects/Podcast/PD_ep_3_1.webp",
+            "media/projects/Podcast/PD_ep_1_1.webp",
+            "media/projects/Podcast/PD_ep_2_1.webp",
+            "media/projects/Podcast/PD_ep_4_1.webp",
+            "media/projects/Podcast/PD_ep_5_1.webp"
+        ],
+        tech: ["Adobe Premiere Pro", "Camera", "Color Grading", "Audio Design"],
+        link: "https://www.youtube.com/@insightuniverse.official/",
+        personas: ["leader", "creator"]
     }
 ];
+
+// Priority sorting for each persona
+export const PROJECT_SORTING = {
+    builder: [2, 1, 3],
+    leader: [4],
+    creator: [4]
+};
+
+export const CERTIFICATE_SORTING = {
+    builder: [10, 5, 4, 6, 7, 2, 8, 3],
+    leader: [1, 3],
+    creator: [9, 1]
+};
 
 export const CERTIFICATES_DATA = [
     {
         id: 1,
-        title: "Cyberthon.ai Winner",
-        issuer: "Chandigarh Police",
-        explanation: "Secured runner-up position in the national level AI & Cybersecurity hackathon.",
-        image: "cyberthonai4.jpeg",
+        order: 1,
+        title: "Letter of Appointment – Multimedia Executive",
+        issuer: "Chandigarh University (Connecting All Circles Club)",
+        explanation: "Handling visual content, media assets, and creative support for club activities and events.",
+        image: "media/certificates/CAC_Internship_Certificate.webp",
+        date: "Jun 24",
         link: "#",
-        personas: ["builder", "leader"]
+        personas: ["leader", "creator"]
     },
     {
         id: 2,
-        title: "Video Editing Specialist",
-        issuer: "WictroniX",
-        explanation: "Certified excellence in high-end video production and client project management.",
-        image: "kk2.jpeg",
+        order: 2,
+        title: "Internship Completion Certificate – Machine Learning",
+        issuer: "CETPA Infotech Pvt. Ltd.",
+        explanation: "Successfully completed a 6-week internship focused on Machine Learning implementation.",
+        image: "media/certificates/Cetpa_Internship_Certificate.webp",
+        date: "Aug 24",
+        link: "#",
+        personas: ["builder"]
+    },
+    {
+        id: 3,
+        order: 3,
+        title: "Project Completion – Social Media Reach Analysis",
+        issuer: "CETPA Infotech Pvt. Ltd.",
+        explanation: "Machine learning project involving data analysis and prediction of social media reach.",
+        image: "media/certificates/CETPA_Project_certicficate.webp",
+        date: "Sep 24",
+        link: "#",
+        personas: ["builder"]
+    },
+    {
+        id: 4,
+        order: 4,
+        title: "Six Weeks Training – Machine Learning",
+        issuer: "CETPA Infotech Pvt. Ltd.",
+        explanation: "Completed structured training covering machine learning fundamentals and algorithms.",
+        image: "media/certificates/Cetpa_traning_cert.webp",
+        date: "Jul 24",
+        link: "#",
+        personas: ["builder"]
+    },
+    {
+        id: 5,
+        order: 5,
+        title: "Cloud Computing",
+        issuer: "NPTEL (IIT Kharagpur)",
+        explanation: "Completed a 12-week course covering cloud architecture and service models.",
+        image: "media/certificates/Cloud Computing.webp",
+        date: "Dec 24",
+        link: "#",
+        personas: ["builder"]
+    },
+    {
+        id: 6,
+        order: 6,
+        title: "Foundation of Cloud IoT Edge ML",
+        issuer: "NPTEL (IIT Kanpur)",
+        explanation: "Advanced course focusing on cloud computing, IoT systems, and edge-based ML.",
+        image: "media/certificates/Foundation of Cloud IoT Edge ML.webp",
+        date: "Nov 24",
+        link: "#",
+        personas: ["builder"]
+    },
+    {
+        id: 7,
+        order: 7,
+        title: "Internet of Things – Design Concepts",
+        issuer: "SWAYAM (NITTTR Chandigarh)",
+        explanation: "Covering IoT architecture, real-world use cases, and system design principles.",
+        image: "media/certificates/Internet of Things.webp",
+        date: "Jan 25",
+        link: "#",
+        personas: ["builder"]
+    },
+    {
+        id: 8,
+        order: 8,
+        title: "Internship Completion – Flutter Developer",
+        issuer: "Wictronix Infotech Pvt. Ltd.",
+        explanation: "Professional internship as a Flutter Developer Intern, contributing to application development.",
+        image: "media/certificates/Siddharth Sharma Completion letter.webp",
+        date: "Oct 24",
+        link: "#",
+        personas: ["builder"]
+    },
+    {
+        id: 9,
+        order: 9,
+        title: "Internship Certificate – Video Editing Intern",
+        issuer: "Chandigarh University (VLR Studio)",
+        explanation: "Handling video editing tasks with professionalism and creative expertise.",
+        image: "media/certificates/VLRI_Internship_Certificate.webp",
+        date: "Aug 24",
         link: "#",
         personas: ["creator"]
     },
     {
-        id: 3,
-        title: "Operations Management",
-        issuer: "MS Club",
-        explanation: "Recognition for outstanding leadership and operational coordination at MSC CU.",
-        image: "secretary.jpg",
-        link: "#",
-        personas: ["leader"]
-    },
-    {
-        id: 4,
-        title: "Machine Learning Training",
-        issuer: "CETPA Infotech",
-        explanation: "Completed professional training in Python, Scikit-learn, and Predictive Modeling.",
-        image: "siddhathml.jpg",
+        id: 10,
+        order: 10,
+        title: "Certificate of Internship – Flutter Developer",
+        issuer: "Wictronix Infotech Pvt. Ltd.",
+        explanation: "Demonstrating commitment, technical skills, and consistent performance in Flutter development.",
+        image: "media/certificates/WX_Certificate.webp",
+        date: "Oct 24",
         link: "#",
         personas: ["builder"]
     }
@@ -294,9 +443,9 @@ export const INTERESTS_DATA = [
 ];
 
 export const EVENTS_HIGHLIGHTS = [
-    { id: 1, title: "Tech Fest 2024", role: "Core Organizer", stats: "5000+ Attendees", image: "techfest.jpeg" },
-    { id: 2, title: "Microsoft Summit", role: "Event Lead", stats: "30+ Speakers", image: "kk1.jpeg" },
-    { id: 3, title: "Campus Hackathon", role: "Logistics Head", stats: "48 Hours Non-stop", image: "tricity3.jpeg" },
+    { id: 1, title: "Tech Fest 2024", role: "Core Organizer", stats: "5000+ Attendees", image: "media/Events/EV_CAC_1_1.webp" },
+    { id: 2, title: "Microsoft Student Chapter", role: "Event Lead", stats: "30+ Speakers", image: "media/Events/EV_KC_1.webp" },
+    { id: 3, title: "Campus Hackathon", role: "Logistics Head", stats: "48 Hours Non-stop", image: "media/Events/HWT_3.webp" },
 ];
 
 export const FULL_DATA = [
@@ -345,7 +494,7 @@ export const FULL_DATA = [
             challenge: "Creating engaging long-form content for a university audience.",
             solution: "Revamped editing style and improved audio mastering.",
             tech: ["Audio Editing", "Podcast Production", "Content Strategy"],
-            images: ["kk3.jpeg"]
+            images: ["media/projects/InsightUniverse/kk3.webp"]
         }
     },
     {
@@ -377,7 +526,15 @@ export const FULL_DATA = [
             challenge: "Ensuring user privacy and real-time messaging.",
             solution: "Integrated Firebase Cloud Messaging & encryption protocols.",
             tech: ["Flutter", "Firebase", "FCM", "Security"],
-            images: ["chat.png", "chat2.png", "chat3.png", "chat4.png", "chat5.png", "chat6.png", "chat7.png"]
+            images: [
+                "media/projects/VeilChat/chat.webp",
+                "media/projects/VeilChat/chat2.webp",
+                "media/projects/VeilChat/chat3.webp",
+                "media/projects/VeilChat/chat4.webp",
+                "media/projects/VeilChat/chat5.webp",
+                "media/projects/VeilChat/chat6.webp",
+                "media/projects/VeilChat/chat7.webp"
+            ]
         }
     },
     {
@@ -393,7 +550,12 @@ export const FULL_DATA = [
             challenge: "Solving a complex cyber-security problem in 24 hours.",
             solution: "Developed a prototype that impressed the judges.",
             tech: ["Problem Solving", "Rapid Prototyping"],
-            images: ["cyberthonai4.jpeg", "cyberthonai2.jpeg", "cyberthonai3.jpeg", "cyberthonai1.jpeg"]
+            images: [
+                "media/Events/CY_25_1.webp",
+                "media/Events/CY_25_2.webp",
+                "media/Events/CY_25_3.webp",
+                "media/Events/CY_25_4.webp"
+            ]
         }
     },
     {
@@ -409,7 +571,12 @@ export const FULL_DATA = [
             challenge: "Design a scalable, modular prototype under tight time constraints.",
             solution: "Focused on an MVP that demonstrated core functionality and impact.",
             tech: ["Flutter", "Firebase", "Rapid Prototyping"],
-            images: ["tricity1.jpeg", "tricity2.jpeg", "tricity3.jpeg"]
+            images: [
+                "media/Events/HWT_1.webp",
+                "media/Events/HWT_2.webp",
+                "media/Events/HWT_3.webp",
+                "media/Events/HWT_4.webp"
+            ]
         }
     },
     {
@@ -426,7 +593,13 @@ export const FULL_DATA = [
             challenge: "Manual data entry was slowing down production.",
             solution: "Built a real-time Firestore app for inventory tracking.",
             tech: ["Flutter", "Firestore", "Role-based Auth"],
-            images: ["careutility1.jpeg", "careutility2.jpeg", "careutility3.jpeg", "careutility4.jpeg", "careutility5.jpeg"]
+            images: [
+                "media/projects/CareUtility/careutility1.webp",
+                "media/projects/CareUtility/careutility2.webp",
+                "media/projects/CareUtility/careutility3.webp",
+                "media/projects/CareUtility/careutility4.webp",
+                "media/projects/CareUtility/careutility5.webp"
+            ]
         }
     },
     {
@@ -442,7 +615,7 @@ export const FULL_DATA = [
             challenge: "Coordinating schedules and communications across multiple sub-teams during a busy semester.",
             solution: "Introduced structured documentation, weekly syncs, and a shared calendar which reduced conflicts and improved on-time deliveries.",
             tech: ["Event Coordination", "Slack", "Google Workspace"],
-            images: ["kk2.jpeg", "kk1.jpeg"]
+            images: ["media/certificates/kk2.webp", "media/Events/kk1.webp"]
         }
     },
     {
@@ -525,7 +698,7 @@ export const FULL_DATA = [
         id: 308,
         year: "Jun 2024 - Jul 2024",
         title: "Video Editor Intern",
-        organization: "Academics@CU",
+        organization: "Academics Affairs@CU",
         description: "Supported the Video Lecture Recording (VLR) studio by editing lectures and departmental videos to quality standards.",
         category: "experience",
         personas: ["creator"],
@@ -550,7 +723,7 @@ export const FULL_DATA = [
             challenge: "Working with noisy social media datasets and extracting features for prediction.",
             solution: "Applied preprocessing pipelines, feature engineering and model validation to improve accuracy.",
             tech: ["Python", "scikit-learn", "Pandas"],
-            images: ["siddhathml.jpg"]
+            images: ["media/certificates/siddhathml.webp"]
         }
     },
     {
@@ -597,7 +770,136 @@ export const FULL_DATA = [
             challenge: "Securely managing live tickets and payments within an Android environment.",
             solution: "Integrated Firebase Realtime Database for live ticket state and implemented UPI transaction validation to prevent fraud. Built an XML-based Android UI for smooth user experience.",
             tech: ["Java", "XML", "Firebase Realtime Database", "UPI Integration"],
-            images: ["lottery1.jpg", "lottery2.jpg"]
+            images: ["media/projects/LotteryApp/lottery1.webp"]
         }
+    }
+];
+
+export const LOGOS_DATA = [
+    { id: 1, name: "Flutter", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" },
+    { id: 2, name: "Firebase", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+    { id: 3, name: "Dart", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" },
+    { id: 4, name: "Java", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+    { id: 5, name: "Python", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+
+    // Version Control
+    { id: 6, name: "Git", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+    { id: 7, name: "GitHub", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+
+    // Databases
+    { id: 8, name: "SQL", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+    { id: 9, name: "MongoDB", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+
+    // Data Science & Analytics
+    { id: 10, name: "NumPy", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
+    { id: 11, name: "Pandas", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+    { id: 12, name: "Matplotlib", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" },
+    { id: 13, name: "Seaborn", image: "https://cdn-icons-png.flaticon.com/512/2103/2103658.png" },
+    // Office & Productivity
+    { id: 14, name: "Microsoft Excel", image: "https://upload.wikimedia.org/wikipedia/commons/7/73/Microsoft_Excel_2013-2019_logo.svg" },
+    { id: 15, name: "Microsoft PowerPoint", image: "https://cdn-icons-png.flaticon.com/512/732/732224.png" },
+    // AI / ML Representation
+    { id: 16, name: "Data Analytics", image: "https://cdn-icons-png.flaticon.com/512/2103/2103658.png" },
+];
+
+
+export const GALLERY_DATA = [
+    {
+        id: "insight-universe",
+        title: "Insight Universe Podcast",
+        category: "Media Production",
+        role: "Project Lead",
+        images: [
+            "media/projects/Podcast/PD_ep_1_1.webp",
+            "media/projects/Podcast/PD_ep_1_2.webp",
+            "media/projects/Podcast/PD_ep_2_1.webp",
+            "media/projects/Podcast/PD_ep_2_2.webp",
+            "media/projects/Podcast/PD_ep_2_3.webp",
+            "media/projects/Podcast/PD_ep_3_1.webp",
+            "media/projects/Podcast/PD_ep_4_1.webp",
+            "media/projects/Podcast/PD_ep_4_2.webp",
+            "media/projects/Podcast/PD_ep_5_1.Webp"
+        ],
+        description: "Full podcast series production — from concept to final cut."
+    },
+    {
+        id: "startup-mahakumbh",
+        title: "Startup Mahakumbh 2025",
+        category: "Event",
+        role: "Attendee",
+        images: [
+            "media/Events/SMK_1.webp",
+            "media/Events/SMK_2.webp",
+            "media/Events/SMK_3.webp",
+            "media/Events/SMK_4.webp",
+            "media/Events/SMK_5.webp"
+        ],
+        description: "India's largest startup ecosystem event — networking, pitches, and innovation."
+    },
+    {
+        id: "cyberthon-25",
+        title: "Cyberthon.ai 2025",
+        category: "Competition",
+        role: "Winner",
+        images: [
+            "media/Events/CY_25_1.webp",
+            "media/Events/CY_25_2.webp",
+            "media/Events/CY_25_3.webp",
+            "media/Events/CY_25_4.webp"
+        ],
+        description: "Chandigarh Police hackathon — secured Runner-Up solving cybersecurity challenges."
+    },
+    {
+        id: "cac-club",
+        title: "CAC Club Events",
+        category: "Organized",
+        role: "Organizer",
+        images: [
+            "media/Events/EV_Achiver_1.webp",
+            "media/Events/EV_Achiver_2.webp",
+            "media/Events/EV_Achiver_3.webp",
+            "media/Events/EV_CAC_1_1.webp",
+            "media/Events/EV_CAC_1_2.webp",
+            "media/Events/EV_CAC_2_1.webp"
+        ],
+        description: "Leading the multimedia team for Connecting All Circles club activities."
+    },
+    {
+        id: "director-meet",
+        title: "Director Meet Event",
+        category: "Organized",
+        role: "Organizer",
+        images: [
+            "media/Events/EV_KC_1.webp",
+            "media/Events/EV_KC_2.webp"
+        ],
+        video: "media/Events/EV_KC_3.mp4",
+        description: "Knowledge City director sessions — high-impact industry talks and seminars."
+    },
+    {
+        id: "microsoft-chapter",
+        title: "Microsoft Student Chapter",
+        category: "Leadership",
+        role: "Secretary",
+        images: [
+            "media/Events/EV_MS_SEC_1.webp",
+            "media/Events/EV_MS_1.webp"
+        ],
+        description: "Coordinated chapter operations as Secretary — events, communication, and logistics."
+    },
+    {
+        id: "events-competitions",
+        title: "Events & Competitions",
+        category: "Mixed",
+        role: "Organizer",
+        images: [
+            "media/Events/HWT_1.webp",
+            "media/Events/HWT_2.webp",
+            "media/Events/HWT_3.webp",
+            "media/Events/HWT_4.webp",
+            "media/Events/Project_Expo.webp",
+            "media/Events/VD_cl_1.webp"
+        ],
+        description: "Hack with Tricity, Project Expo, and other tech events and competitions."
     }
 ];
