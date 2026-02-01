@@ -85,7 +85,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
 
   return (
     <div
-      className="h-screen text-white overflow-hidden relative"
+      className="min-h-screen lg:h-screen text-white overflow-y-auto lg:overflow-hidden relative"
       style={{ backgroundColor: '#000000' }}
     >
       {/* Animated Background Elements */}
@@ -137,12 +137,12 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
       </motion.button>
 
       {/* Page Content - Full Width Layout */}
-      <div className="relative z-10 h-full flex items-center justify-center px-6 md:px-12 lg:px-20 py-6">
+      <div className="relative z-10 min-h-screen lg:h-full flex items-start lg:items-center justify-center px-4 md:px-8 lg:px-20 py-20 lg:py-6">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16"
+          className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12"
         >
           {/* LEFT SIDE - Info */}
           <motion.div variants={itemVariants} className="flex flex-col justify-center">
@@ -185,7 +185,7 @@ export default function ContactPage({ theme, PROFILE_IMAGE, onBack }) {
                 <div className="text-xs uppercase tracking-wider text-gray-500 font-bold mb-2 flex items-center gap-2">
                   <Phone size={14} className="group-hover:text-cyan-400 transition-colors" /> PHONE
                 </div>
-                <p className="text-lg font-bold text-white">+91 8988568859</p>
+                <p className="text-lg font-bold text-white">+91 89 8856 8859</p>
                 <p className="text-xs text-gray-500 mt-1">Available 9am – 8pm IST</p>
               </motion.a>
 

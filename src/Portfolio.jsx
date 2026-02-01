@@ -332,6 +332,9 @@ export default function Portfolio() {
                   alt="Siddharth Sharma - Professional Portfolio"
                   loading="eager"
                   fetchpriority="high"
+                  decoding="sync"
+                  width={320}
+                  height={320}
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-500 relative"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-tr ${theme.gradientOverlay} to-transparent pointer-events-none`} />
@@ -438,7 +441,7 @@ export default function Portfolio() {
           </div>
 
           <div className="font-black text-2xl tracking-tighter mb-4 grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-700 cursor-default">
-            iam<span className={accentColorClass}>Sidd</span>.Tech
+            iam<span className={accentColorClass}>Sidd.</span>Tech
           </div>
 
           <p className="text-gray-600 text-[11px] font-medium uppercase tracking-widest">
