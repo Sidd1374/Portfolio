@@ -317,8 +317,8 @@ export const PROJECT_SORTING = {
 
 export const CERTIFICATE_SORTING = {
     builder: [10, 5, 4, 6, 7, 2, 8, 3],
-    leader: [1, 3],
-    creator: [9, 1]
+    leader: [12, 3, 11, 13],
+    creator: [12, 9, 1]
 };
 
 export const CERTIFICATES_DATA = [
@@ -431,6 +431,39 @@ export const CERTIFICATES_DATA = [
         date: "Oct 24",
         link: "#",
         personas: ["builder"]
+    },
+    {
+        id: 11,
+        order: 11,
+        title: "Certificate of Recognition – All India 5th Cyberthon.AI 2025",
+        issuer: "Chandigarh Police (in collaboration with Infosys & HDFC Bank)",
+        explanation: "Recognized for active participation in the All India 5th Cyberthon.AI 2025, contributing to awareness and engagement in cybersecurity and AI-driven problem-solving.",
+        image: "media/certificates/cyberthon_participation.webp",
+        date: "2025",
+        link: "#",
+        personas: ["builder", "leader"]
+    },
+    {
+        id: 12,
+        order: 12,
+        title: "Letter of Appreciation – Director Multimedia",
+        issuer: "Chandigarh University (Central Event Management, Academic Affairs)",
+        explanation: "Awarded in recognition of dedication, leadership, and impactful contributions as Director Multimedia, enhancing outreach, visibility, and execution of university events.",
+        image: "media/certificates/LOR_CAC.webp",
+        date: "2025",
+        link: "#",
+        personas: ["leader", "creator"]
+    },
+    {
+        id: 13,
+        order: 13,
+        title: "Certificate of Appointment – Secretary",
+        issuer: "Chandigarh University (Microsoft Student Chapter)",
+        explanation: "Appointed as Secretary for the Microsoft Student Chapter, contributing to technical community building, coordination, and student-led initiatives.",
+        image: "media/certificates/Microsoft student chapter sectarety.webp",
+        date: "2024–25",
+        link: "#",
+        personas: ["leader"]
     }
 ];
 
