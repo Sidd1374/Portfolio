@@ -30,7 +30,7 @@ import {
 
 
 export const PROFILE_IMAGE = `${import.meta.env.BASE_URL}media/siddharth.webp`;
-export const RESUME_PATH = `${import.meta.env.BASE_URL}media/siddharth_resume.pdf`;
+export const RESUME_PATH = `${import.meta.env.BASE_URL}media/Siddharth's Resume.pdf`;
 
 export const PERSONA_SUMMARIES = {
     builder: [
