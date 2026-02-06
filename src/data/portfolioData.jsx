@@ -808,32 +808,67 @@ export const FULL_DATA = [
     }
 ];
 
-export const LOGOS_DATA = [
-    { id: 1, name: "Flutter", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" },
-    { id: 2, name: "Firebase", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
-    { id: 3, name: "Dart", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" },
-    { id: 4, name: "Java", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
-    { id: 5, name: "Python", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
 
-    // Version Control
-    { id: 6, name: "Git", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-    { id: 7, name: "GitHub", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+// Persona-Specific Tech Logos
+export const LOGOS_DATA = {
+    builder: [
+        { id: 1, name: "Flutter", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" },
+        { id: 2, name: "Firebase", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+        { id: 3, name: "Dart", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" },
+        { id: 4, name: "Java", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+        { id: 5, name: "Python", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+        { id: 6, name: "Git", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+        { id: 7, name: "GitHub", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+        { id: 8, name: "SQL", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+        { id: 9, name: "MongoDB", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+        { id: 10, name: "NumPy", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
+        { id: 11, name: "Pandas", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+        { id: 12, name: "C++", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
+        { id: 13, name: "Android Studio", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" },
+        { id: 14, name: "VS Code", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
+    ],
+    leader: [
+        { id: 1, name: "Microsoft Excel", image: "https://upload.wikimedia.org/wikipedia/commons/7/73/Microsoft_Excel_2013-2019_logo.svg" },
+        { id: 2, name: "PowerPoint", image: "https://cdn-icons-png.flaticon.com/512/732/732224.png" },
+        { id: 3, name: "Google Workspace", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" },
+        { id: 4, name: "Slack", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg" },
+        { id: 5, name: "Figma", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+        { id: 6, name: "Trello", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg" },
+        { id: 7, name: "Notion", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notion/notion-original.svg" },
+        { id: 8, name: "GitHub", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+        { id: 9, name: "Git", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+        // Project Management & Collaboration
+        { id: 10, name: "Jira", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" },
+        { id: 11, name: "Zoom", image: "https://cdn-icons-png.flaticon.com/512/4401/4401470.png" },
+        // Marketing & CRM
+        { id: 12, name: "HubSpot", image: "https://cdn-icons-png.flaticon.com/512/5969/5969282.png" },
+        { id: 13, name: "LinkedIn", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" },
+        { id: 14, name: "Meta Business", image: "https://cdn-icons-png.flaticon.com/512/5968/5968764.png" },
+        { id: 15, name: "Google Analytics", image: "https://cdn-icons-png.flaticon.com/512/2965/2965306.png" },
+    ],
+    creator: [
+        { id: 1, name: "Premiere Pro", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/premierepro/premierepro-original.svg" },
+        { id: 2, name: "After Effects", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg" },
+        { id: 3, name: "Photoshop", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" },
+        { id: 4, name: "Illustrator", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" },
+        { id: 5, name: "Figma", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+        { id: 6, name: "Canva", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg" },
+        { id: 7, name: "CapCut", image: "https://cdn-icons-png.flaticon.com/512/6124/6124991.png" },
+        { id: 8, name: "YouTube", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/youtube/youtube-original.svg" },
+        { id: 9, name: "Audacity", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/audacity/audacity-original.svg" },
+        // AI Creative Tools
+        { id: 10, name: "ChatGPT", image: "https://cdn-icons-png.flaticon.com/512/8943/8943377.png" },
+        { id: 11, name: "DALL-E", image: "https://cdn-icons-png.flaticon.com/512/11865/11865346.png" },
+        { id: 12, name: "Midjourney", image: "https://cdn-icons-png.flaticon.com/512/11035/11035452.png" },
+        { id: 13, name: "Sora AI", image: "https://cdn-icons-png.flaticon.com/512/11865/11865380.png" },
+        { id: 14, name: "ElevenLabs", image: "https://cdn-icons-png.flaticon.com/512/9131/9131529.png" },
+        // Analytics & Platforms
+        { id: 15, name: "YouTube Analytics", image: "https://cdn-icons-png.flaticon.com/512/1384/1384060.png" },
+        { id: 16, name: "Pinterest", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pinterest/pinterest-original.svg" },
+        { id: 17, name: "Google Analytics", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" },
+    ]
+};
 
-    // Databases
-    { id: 8, name: "SQL", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-    { id: 9, name: "MongoDB", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-
-    // Data Science & Analytics
-    { id: 10, name: "NumPy", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
-    { id: 11, name: "Pandas", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
-    { id: 12, name: "Matplotlib", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" },
-    { id: 13, name: "Seaborn", image: "https://cdn-icons-png.flaticon.com/512/2103/2103658.png" },
-    // Office & Productivity
-    { id: 14, name: "Microsoft Excel", image: "https://upload.wikimedia.org/wikipedia/commons/7/73/Microsoft_Excel_2013-2019_logo.svg" },
-    { id: 15, name: "Microsoft PowerPoint", image: "https://cdn-icons-png.flaticon.com/512/732/732224.png" },
-    // AI / ML Representation
-    { id: 16, name: "Data Analytics", image: "https://cdn-icons-png.flaticon.com/512/2103/2103658.png" },
-];
 
 
 export const GALLERY_DATA = [

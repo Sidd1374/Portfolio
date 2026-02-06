@@ -483,7 +483,7 @@ export default function Portfolio() {
       <CharacterStats theme={theme} persona={persona} />
 
       <Suspense fallback={null}>
-        <LogoMarquee theme={theme} />
+        <LogoMarquee theme={theme} persona={persona} />
       </Suspense>
 
       <Suspense fallback={<SectionLoader />}>

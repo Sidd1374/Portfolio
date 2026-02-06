@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { LOGOS_DATA } from '../../data/portfolioData';
 
-const LogoMarquee = ({ theme }) => {
+const LogoMarquee = ({ theme, persona = 'builder' }) => {
     const [isHovered, setIsHovered] = useState(false);
+    // Get persona-specific logos
+    const personaLogos = LOGOS_DATA[persona] || LOGOS_DATA.builder;
     // Use 2 sets for a perfect seamless loop when animating to -50%
-    const marqueeLogos = [...LOGOS_DATA, ...LOGOS_DATA];
+    const marqueeLogos = [...personaLogos, ...personaLogos];
 
     return (
         <div className="py-16 relative overflow-hidden group">
