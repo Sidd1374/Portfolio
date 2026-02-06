@@ -12,6 +12,8 @@ import {
   Mail,
   Download
 } from 'lucide-react';
+import SplashLoader from './components/Portfolio/SplashLoader';
+import PINModal from './components/Portfolio/PINModal';
 
 // Data & Utils
 import {
@@ -50,6 +52,7 @@ const SectionLoader = () => (
 );
 
 export default function Portfolio() {
+  const [isLoading, setIsLoading] = useState(true);
   const [persona, setPersona] = useState('builder'); // 'builder', 'leader', 'creator'
   const [selectedNode, setSelectedNode] = useState(null);
   const [selectedSkillCategory, setSelectedSkillCategory] = useState(null);
@@ -59,6 +62,12 @@ export default function Portfolio() {
   const [contactOpen, setContactOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showTop, setShowTop] = useState(false);
+
+  // PIN Modal & Tap Counter States
+  const [tapCount, setTapCount] = useState(0);
+  const [showPINModal, setShowPINModal] = useState(false);
+  const [aiToolsAccess, setAiToolsAccess] = useState(false);
+  const tapTimerRef = useRef(null);
 
   // New states for Projects & Certificates
   const [selectedCert, setSelectedCert] = useState(null);
@@ -109,15 +118,62 @@ export default function Portfolio() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Splash Screen Timer
+  useEffect(() => {
+    // Hide loader after minimum 2 seconds
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     const handleHash = () => {
       if (window.location.hash === '#contact-page') setContactOpen(true);
       else setContactOpen(false);
+
+      // Handle AI tools access
+      if (window.location.hash === '#ai-tools' && aiToolsAccess) {
+        // AI tools page will be handled by App.jsx routing
+      }
     };
     handleHash();
     window.addEventListener('hashchange', handleHash);
     return () => window.removeEventListener('hashchange', handleHash);
-  }, []);
+  }, [aiToolsAccess]);
+
+  // Handle Profile Image Tap
+  const handleProfileTap = () => {
+    const newCount = tapCount + 1;
+    setTapCount(newCount);
+
+    // Clear existing timer
+    if (tapTimerRef.current) {
+      clearTimeout(tapTimerRef.current);
+    }
+
+    // Reset tap count after 3 seconds of inactivity
+    tapTimerRef.current = setTimeout(() => {
+      setTapCount(0);
+    }, 3000);
+
+    // Show PIN modal after 5 taps
+    if (newCount >= 5) {
+      setShowPINModal(true);
+      setTapCount(0);
+      if (tapTimerRef.current) {
+        clearTimeout(tapTimerRef.current);
+      }
+    }
+  };
+
+  // Handle successful PIN entry
+  const handlePINSuccess = () => {
+    setAiToolsAccess(true);
+    setShowPINModal(false);
+    window.location.hash = '#ai-tools';
+  };
 
   if (contactOpen) {
     return <ContactPage theme={theme} PROFILE_IMAGE={PROFILE_IMAGE} onBack={() => { setContactOpen(false); window.location.hash = ''; }} />;
@@ -156,6 +212,9 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-white/20 overflow-x-hidden">
+      {/* Splash Loader */}
+      <SplashLoader isVisible={isLoading} />
+
       {/* Progress Bar */}
       <motion.div
         className={`fixed top-0 left-0 right-0 h-1 ${theme.bgSolid} z-50 origin-left`}
@@ -175,7 +234,12 @@ export default function Portfolio() {
 
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between relative h-12 md:h-14">
           {/* Logo - Left */}
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
+            <img
+              src="/media/Logo_Wht.png"
+              alt="Logo"
+              className="h-6 md:h-7 w-auto object-contain"
+            />
             <div className="font-extrabold text-lg md:text-xl tracking-tighter group cursor-default whitespace-nowrap">
               <span className="text-white">iam</span>
               <span className={accentColorClass}>Sidd</span>
@@ -221,15 +285,39 @@ export default function Portfolio() {
 
           {/* Socials + Contact - Right */}
           <div className="flex items-center gap-1 sm:gap-2 flex-nowrap">
-            <a href="https://instagram.com/_ig__skull_" target="_blank" rel="noreferrer" aria-label="Instagram" className="p-1.5 sm:p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+            <motion.a
+              href="https://instagram.com/_ig__skull_"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              className="p-1.5 sm:p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+              whileHover={{ scale: 1.15, rotate: 5, color: "#E1306C" }}
+              whileTap={{ scale: 0.95 }}
+            >
               <Instagram size={18} />
-            </a>
-            <a href="https://github.com/Sidd1374" target="_blank" rel="noreferrer" aria-label="GitHub" className="p-1.5 sm:p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+            </motion.a>
+            <motion.a
+              href="https://github.com/Sidd1374"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              className="p-1.5 sm:p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+              whileHover={{ scale: 1.15, rotate: -5 }}
+              whileTap={{ scale: 0.95 }}
+            >
               <Github size={18} />
-            </a>
-            <a href="https://linkedin.com/in/siddharthsharma1374" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="p-1.5 sm:p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+            </motion.a>
+            <motion.a
+              href="https://linkedin.com/in/siddharthsharma1374"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="p-1.5 sm:p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+              whileHover={{ scale: 1.15, rotate: 5, color: "#0A66C2" }}
+              whileTap={{ scale: 0.95 }}
+            >
               <Linkedin size={18} />
-            </a>
+            </motion.a>
             <button
               onClick={() => { setContactOpen(true); window.location.hash = '#contact-page'; window.scrollTo(0, 0); }}
               className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r ${theme.gradientDeep} text-white text-xs font-bold hover:scale-105 transition-all shadow-lg ${theme.shadowSoft}`}
@@ -277,21 +365,40 @@ export default function Portfolio() {
             </p>
 
             <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-8">
-              <a href="mailto:sidd13704@gmail.com" className="px-4 py-2 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-600 transition-all flex items-center gap-2 text-sm font-medium group">
+              <motion.a
+                href="mailto:sidd13704@gmail.com"
+                className="px-4 py-2 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-600 transition-all flex items-center gap-2 text-sm font-medium group"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <Mail size={16} className="group-hover:text-white" /> Email
-              </a>
-              <a href="https://linkedin.com/in/siddharthsharma1374" target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-600 transition-all flex items-center gap-2 text-sm font-medium group">
+              </motion.a>
+              <motion.a
+                href="https://linkedin.com/in/siddharthsharma1374"
+                target="_blank"
+                rel="noreferrer"
+                className="px-4 py-2 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-600 transition-all flex items-center gap-2 text-sm font-medium group"
+                whileHover={{ scale: 1.05, y: -2, rotate: 2 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <Linkedin size={16} className="group-hover:text-blue-400" /> LinkedIn
-              </a>
-              <a href="https://github.com/Sidd1374" target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-600 transition-all flex items-center gap-2 text-sm font-medium group">
+              </motion.a>
+              <motion.a
+                href="https://github.com/Sidd1374"
+                target="_blank"
+                rel="noreferrer"
+                className="px-4 py-2 rounded-lg bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-600 transition-all flex items-center gap-2 text-sm font-medium group"
+                whileHover={{ scale: 1.05, y: -2, rotate: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <Github size={16} className="group-hover:text-white" /> GitHub
-              </a>
+              </motion.a>
               <button
                 onClick={() => {
                   window.open(RESUME_PATH, '_blank');
                   const link = document.createElement('a');
                   link.href = RESUME_PATH;
-                  link.download = 'siddharth_resume.pdf';
+                  link.download = 'Siddharth_Sharma_Resume.pdf';
                   document.body.appendChild(link);
                   link.click();
                   document.body.removeChild(link);
@@ -325,7 +432,10 @@ export default function Portfolio() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className={`relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full border-4 ${theme.borderMedium} overflow-hidden shadow-2xl ${theme.shadowStrong} z-10`}
+                onClick={handleProfileTap}
+                className={`relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full border-4 ${theme.borderMedium} overflow-hidden shadow-2xl ${theme.shadowStrong} z-10 cursor-pointer select-none`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <img
                   src={PROFILE_IMAGE}
@@ -490,6 +600,11 @@ export default function Portfolio() {
           onProjectClick={setSelectedProject}
         />
         <GalleryModal isOpen={galleryOpen} onClose={closeGallery} images={galleryImages} category={galleryCategory} theme={theme} />
+        <PINModal
+          isOpen={showPINModal}
+          onClose={() => setShowPINModal(false)}
+          onSuccess={handlePINSuccess}
+        />
       </Suspense>
     </div>
   );

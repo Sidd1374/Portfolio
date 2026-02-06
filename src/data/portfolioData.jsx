@@ -30,7 +30,7 @@ import {
 
 
 export const PROFILE_IMAGE = `${import.meta.env.BASE_URL}media/siddharth.webp`;
-export const RESUME_PATH = `${import.meta.env.BASE_URL}media/Siddharth's Resume.pdf`;
+export const RESUME_PATH = `${import.meta.env.BASE_URL}media/Siddharth_Sharma_Resume.pdf`;
 
 export const PERSONA_SUMMARIES = {
     builder: [
@@ -240,16 +240,16 @@ export const PROJECTS_DATA = [
     {
         id: 2,
         order: 2,
-        title: "Care Utility",
+        title: "CPMS - Comprehensive Production Management System Application",
         description: "Consolidates essential daily tools into one centralized, user-friendly platform.",
         images: [
-            "media/projects/CareUtility/careutility1.webp",
-            "media/projects/CareUtility/careutility2.webp",
-            "media/projects/CareUtility/careutility3.webp",
-            "media/projects/CareUtility/careutility4.webp",
-            "media/projects/CareUtility/careutility5.webp"
+            "media/projects/CPMS/careutility1.webp",
+            "media/projects/CPMS/careutility2.webp",
+            "media/projects/CPMS/careutility3.webp",
+            "media/projects/CPMS/careutility4.webp",
+            "media/projects/CPMS/careutility5.webp"
         ],
-        logo: "media/projects/CareUtility/cu_logo.webp",
+        logo: "media/projects/CPMS/github_logo.svg",
         tech: ["Flutter", "Firebase"],
         link: "https://github.com/Sidd1374/care_utility",
         details: {
@@ -627,11 +627,11 @@ export const FULL_DATA = [
             solution: "Built a real-time Firestore app for inventory tracking.",
             tech: ["Flutter", "Firestore", "Role-based Auth"],
             images: [
-                "media/projects/CareUtility/careutility1.webp",
-                "media/projects/CareUtility/careutility2.webp",
-                "media/projects/CareUtility/careutility3.webp",
-                "media/projects/CareUtility/careutility4.webp",
-                "media/projects/CareUtility/careutility5.webp"
+                "media/projects/CPMS/careutility1.webp",
+                "media/projects/CPMS/careutility2.webp",
+                "media/projects/CPMS/careutility3.webp",
+                "media/projects/CPMS/careutility4.webp",
+                "media/projects/CPMS/careutility5.webp"
             ]
         }
     },
