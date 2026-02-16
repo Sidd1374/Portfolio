@@ -615,13 +615,13 @@ export const FULL_DATA = [
     {
         id: 7,
         year: "Feb 2024 - June 2024",
-        title: "Care Utility (Production Line App)",
+        title: "CPMS - Comprehensive Production Management System Application",
         organization: "Project",
         description: "Streamlined production line operations, improving efficiency by 40%.",
         category: "project",
         personas: ["builder"],
         icon: <Briefcase className="w-6 h-6" />,
-        status: "paid",
+        // status: "paid",
         details: {
             challenge: "Manual data entry was slowing down production.",
             solution: "Built a real-time Firestore app for inventory tracking.",
